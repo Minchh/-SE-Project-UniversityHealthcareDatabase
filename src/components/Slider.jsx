@@ -19,15 +19,15 @@ const Slider = () => {
   });
 
   return (
-    <div className="w-1/2 h-full text-center">
-      <div className="mt-28 text-[#2E3191] font-semibold text-4xl">
+    <div className="w-1/2">
+      <div className="mt-28 text-[#2E3191] font-semibold text-4xl text-center">
         <p>International University</p>
         <p>
           Student <span className="text-[#AD2FFF]">Healthcare</span> Site
         </p>
       </div>
 
-      <div className="mt-8 flex justify-center items-center w-full">
+      <div className="flex justify-center items-center my-16 w-full">
         <div className="relative w-[400px] h-[400px]">
           {sliders.map((image, index) => (
             <Slide key={index} src={image} active={index == currentSlide} />

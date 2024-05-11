@@ -3,7 +3,7 @@ import { AiOutlineLeft, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/
 
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [open, setOpen] = useState(false);
 
   // handle toggle password
@@ -22,16 +22,16 @@ const LoginForm = () => {
         </a>
       </div>
 
-      <span className="block mt-12 text-4xl font-bold text-[#2E3191]">Welcome Back!</span>
+      <span className="block mt-12 text-4xl font-bold text-[#2E3191]">Hello new friend!</span>
 
       <div className="mt-4 text-xl text-[#2E3191]">
-        <a href="" className="cursor-pointer underline font-semibold" onClick={() => navigate("/register")}>
-          <span>Create an account</span>
+        <span>Already have an account? </span>
+        <a href="" className="cursor-pointer underline font-semibold" onClick={() => navigate("/login")}>
+          <span>Sign in</span>
         </a>
-        <span> or login to get started...</span>
       </div>
 
-      {/* Login form */}
+      {/* Register form */}
       <form action="" className="text-[#3C58A0] mt-12">
         {/* Email input */}
         <label htmlFor="" className="block">
@@ -45,20 +45,49 @@ const LoginForm = () => {
         </label>
         <div className="relative p-0 m-0 w-4/5">
           <input
-            type={(open === false) ? "password" : "text"}
-            className={`h-12 w-full rounded-full pl-4 pr-12 border-[1px] border-[#3C58A0] ${(open == false) ? "font-bold tracking-widest" : ""}`}
+            type={open === false ? "password" : "text"}
+            className={`h-12 w-full rounded-full pl-4 pr-12 border-[1px] border-[#3C58A0] ${
+              open == false ? "font-bold tracking-widest" : ""
+            }`}
           />
 
           <div className="text-2xl absolute top-3 right-5 cursor-pointer">
-            {open === false ? <AiOutlineEyeInvisible onClick={toggle} /> : <AiOutlineEye onClick={toggle} /> }
+            {open === false ? <AiOutlineEyeInvisible onClick={toggle} /> : <AiOutlineEye onClick={toggle} />}
           </div>
         </div>
 
-        {/* Forgot password */}
-        <div className="flow-root w-4/5 mt-4 pr-4 text-sm font-bold underline">
-          <a href="#" className="block float-right">
-            <span>Forgot password?</span>
-          </a>
+        {/* Confirm password input */}
+        <label htmlFor="" className="block mt-8">
+          Confirm Password
+        </label>
+        <div className="relative p-0 m-0 w-4/5">
+          <input
+            type={open === false ? "password" : "text"}
+            className={`h-12 w-full rounded-full pl-4 pr-12 border-[1px] border-[#3C58A0] ${
+              open == false ? "font-bold tracking-widest" : ""
+            }`}
+          />
+
+          <div className="text-2xl absolute top-3 right-5 cursor-pointer">
+            {open === false ? <AiOutlineEyeInvisible onClick={toggle} /> : <AiOutlineEye onClick={toggle} />}
+          </div>
+        </div>
+
+        {/* Privacy Policy */}
+        <div className="flex items-center mt-2">
+          <input
+            id="link-checkbox"
+            type="checkbox"
+            value=""
+            className="w-4 h-4 text-[#3C58A0] bg-white border-white rounded-full focus:ring-[#3C58A0]"
+          />
+          <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium">
+            I agree to the{" "}
+            <a href="#" className="font-bold underline">
+              Privacy Policy
+            </a>
+            .
+          </label>
         </div>
 
         {/* Submit button */}
@@ -113,4 +142,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
