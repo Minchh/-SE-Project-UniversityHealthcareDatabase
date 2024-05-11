@@ -1,8 +1,8 @@
 Tech:
-Build tool: Vite
-Library: React
-CSS framework: Tailwindcss
-Rules: ESLint
+- Build tool: Vite
+- Library: React
+- CSS framework: Tailwindcss
+- Rules: ESLint
 
 Mọi người làm theo các bước sau để chạy web:
 
