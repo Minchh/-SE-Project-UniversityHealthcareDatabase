@@ -1,11 +1,19 @@
-import { SlArrowLeft, SlEye } from "react-icons/sl";
+import { useState } from "react";
+import { AiOutlineLeft, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const LoginForm = () => {
+  const [open, setOpen] = useState(false);
+
+  // handle toggle password
+  const toggle = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className="w-1/2 h-full">
       <div className="mt-20 text-[#3C58A0]">
         <a href="#">
-          <SlArrowLeft className="inline-block mr-2" />
+          <AiOutlineLeft className="inline-block mr-2" />
           <span>Back to website</span>
         </a>
       </div>
@@ -21,26 +29,38 @@ const LoginForm = () => {
 
       {/* Login form */}
       <form action="" className="text-[#3C58A0] mt-12">
+        {/* Email input */}
         <label htmlFor="" className="block">
-          Email or Username
+          Email
         </label>
-        <input type="text" className="block w-4/5 h-12 rounded-full px-4 border-[1px] border-[#3C58A0]" />
+        <input type="email" className="block w-4/5 h-12 rounded-full px-4 border-[1px] border-[#3C58A0]" />
 
+        {/* Password input */}
         <label htmlFor="" className="block mt-8">
           Password
         </label>
-        <dir className="relative p-0 m-0 w-4/5">
-          <input type="text" className="block w-full h-12 rounded-full pl-4 pr-12 border-[1px] border-[#3C58A0]" />
-          <SlEye className="inline-block absolute right-4 top-1/3 text-xl cursor-pointer" />
-        </dir>
+        <div className="relative p-0 m-0 w-4/5">
+          <input
+            type={(open === false) ? "password" : "text"}
+            className={`h-12 w-full rounded-full pl-4 pr-12 border-[1px] border-[#3C58A0] ${(open == false) ? "font-bold tracking-widest" : ""}`}
+          />
 
+          <div className="text-2xl absolute top-3 right-5 cursor-pointer">
+            {open === false ? <AiOutlineEyeInvisible onClick={toggle} /> : <AiOutlineEye onClick={toggle} /> }
+          </div>
+        </div>
+
+        {/* Forgot password */}
         <div className="flow-root w-4/5 mt-4 pr-4 text-sm font-bold underline">
           <a href="#" className="block float-right">
             <span>Forgot password?</span>
           </a>
         </div>
 
-        <button className="mt-8 w-4/5 h-12 rounded-full text-[18px] font-bold text-white bg-[#3C58A0] hover:text-[#3C58A0] hover:bg-white hover:border-[1px] hover:border-[#3C58A0]">Submit</button>
+        {/* Submit button */}
+        <button className="mt-8 w-4/5 h-12 rounded-full text-[18px] font-bold text-white bg-[#3C58A0] hover:text-[#3C58A0] hover:bg-white hover:border-[1px] hover:border-[#3C58A0]">
+          Submit
+        </button>
       </form>
 
       {/* Divider horizontal line */}

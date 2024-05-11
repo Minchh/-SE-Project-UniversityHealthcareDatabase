@@ -11,7 +11,7 @@ const FormContainer = (props) => {
 };
 
 FormContainer.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.arrayOf(PropTypes.element),
 }
 
 export default FormContainer;
