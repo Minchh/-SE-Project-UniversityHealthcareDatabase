@@ -6,10 +6,7 @@ import slider2 from "../assets/slider2.png";
 import slider3 from "../assets/slider3.png";
 
 const Slider = () => {
-
-  const sliders = [
-    slider1, slider2, slider3,
-  ];
+  const sliders = [slider1, slider2, slider3];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -32,26 +29,18 @@ const Slider = () => {
 
       <div className="mt-8 flex justify-center items-center w-full">
         <div className="relative w-[400px] h-[400px]">
-          {
-            sliders.map((image, index) => (
-              <Slide 
-                key={index}
-                src={image}
-                active={index == currentSlide}
-              />
-            ))
-          }
+          {sliders.map((image, index) => (
+            <Slide key={index} src={image} active={index == currentSlide} />
+          ))}
           <div className="absolute bottom-[-32px] flex justify-center w-full">
             {sliders.map((_, index) => (
               <div
                 key={index}
-                className={`h-2 w-1/3 mx-3 bg-[#D9D9D9] rounded-full ${index == currentSlide ? 'bg-[#AD2FFF]' : ''}`}
+                className={`h-2 w-1/3 mx-3 rounded-full ${index == currentSlide ? "bg-[#AD2FFF]" : "bg-[#D9D9D9]"}`}
               />
             ))}
-
           </div>
         </div>
-
       </div>
     </div>
   );

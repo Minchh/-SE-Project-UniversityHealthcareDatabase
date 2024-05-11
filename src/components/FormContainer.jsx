@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const FormContainer = (props) => {
   return (
     <div className="w-full h-screen bg-[#BCBCFC] flex justify-center items-center">
@@ -7,5 +9,9 @@ const FormContainer = (props) => {
     </div>
   );
 };
+
+FormContainer.propTypes = {
+  children: PropTypes.element,
+}
 
 export default FormContainer;
