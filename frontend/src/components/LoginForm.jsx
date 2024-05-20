@@ -2,6 +2,8 @@ import { useState } from "react";
 import { AiOutlineLeft, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
+import { loginUser } from './apiService';
+
 
 const LoginForm = () => {
   const [open, setOpen] = useState(false);
@@ -9,6 +11,34 @@ const LoginForm = () => {
   // handle toggle password
   const toggle = () => {
     setOpen(!open);
+  };
+
+  const [loading, setLoading] = useState(false);
+  const [loginError, setLoginError] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // handle login
+  const handleLogin = () => {
+    setLoading(true);
+    setLoginError(null);
+  
+    loginUser(email, password)
+      .then(response => {
+        setLoading(false);
+        if (response.status === 200) {
+          const token = response.data.token;
+          localStorage.setItem('token', token);
+          navigate("/home"); // Navigate to the home page
+        } else {
+          setLoginError("Login failed. Please check your credentials.");
+        }
+      })
+      .catch(error => {
+        setLoading(false);
+        setLoginError("An error occurred. Please try again later.");
+        console.error(error);
+      });
   };
 
   const navigate = useNavigate();
@@ -37,7 +67,7 @@ const LoginForm = () => {
         <label htmlFor="" className="block">
           Email
         </label>
-        <input type="email" className="block w-4/5 h-12 rounded-full px-4 border-[1px] border-[#3C58A0]" />
+        <input type="email" id="email" className="block w-4/5 h-12 rounded-full px-4 border-[1px] border-[#3C58A0]" onChange={e => setEmail(e.target.value)}/>
 
         {/* Password input */}
         <label htmlFor="" className="block mt-8">
@@ -47,6 +77,7 @@ const LoginForm = () => {
           <input
             type={(open === false) ? "password" : "text"}
             className={`h-12 w-full rounded-full pl-4 pr-12 border-[1px] border-[#3C58A0] ${(open == false) ? "font-bold tracking-widest" : ""}`}
+            onChange={e => setPassword(e.target.value)}
           />
 
           <div className="text-2xl absolute top-3 right-5 cursor-pointer">
@@ -62,10 +93,13 @@ const LoginForm = () => {
         </div>
 
         {/* Submit button */}
-        <button className="mt-8 w-4/5 h-12 rounded-full text-[18px] font-bold text-white bg-[#3C58A0] hover:text-[#3C58A0] hover:bg-white hover:border-[1px] hover:border-[#3C58A0]">
+        <button className="mt-8 w-4/5 h-12 rounded-full text-[18px] font-bold text-white bg-[#3C58A0] hover:text-[#3C58A0] hover:bg-white hover:border-[1px] hover:border-[#3C58A0]" onClick={handleLogin} disabled={loading}>
           Submit
+          {loading ? "Logging in..." : ""}
         </button>
       </form>
+      {/* Show login error */}
+      {loginError && <p className="text-red-500 mt-4">{loginError}</p>}
 
       {/* Divider horizontal line */}
       <div className="w-4/5 relative flex my-8 items-center">
@@ -109,6 +143,7 @@ const LoginForm = () => {
           </svg>
         </div>
       </div>
+      
     </div>
   );
 };

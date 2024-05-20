@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const app = express();
+const utils = require('./utils');
+
 
 app.use(cors());
 app.use(express.json());
@@ -41,6 +43,8 @@ app.post("/register", (req, res) => {
             console.log(error);
         }
         if (results.length > 0) {
+            console.log("Email already in use");
+            console.log("Received request:", req.body);
             return res.status(409).json({ message: "Email already in use" });
         } 
 
@@ -60,44 +64,30 @@ app.post("/register", (req, res) => {
 });
 
 // Handle user login
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     // Check if email exists and password is correct
-    db.query('SELECT email FROM users where email = ?', [email], async (error, results) => {
-        if (error) {
-            console.log(error);
-        }
-        if (results.length > 0) {
-            return res.render('register', {
-                message: 'Email is already in use!'
-            })
-        } else if (password !== passwordConfirm) {
-            return res.render('register', {
-                message: 'Passwords do not match!'
-            });
-        }
+    const userQuery = `SELECT * FROM users WHERE email = ?`;
+    const user = await db.query(userQuery, [email]);
 
-        let hashedPassword = await bcrypt.hash(password, 8);
-        console.log(hashedPassword);
+    if (user.length > 0) {
+        const dbPassword = user[0].password; // Assuming the password is stored in the 'password' field
 
-        db.query('INSERT INTO users SET ? ', {name: name, email: email, password: hashedPassword }, (error, results) => {
-            if(error) {
-                console.log(error);
-            } else {
-                console.log(results);
-                return res.render('register', {
-                    message: 'User registered!'
-                });
+        // Compare the hashed password from the database with the provided password
+        bcrypt.compare(password, dbPassword, (err, result) => {
+            if (err) {
+                return res.status(500).json({ message: "Internal server error" });
             }
-        })
 
-    });
-
-    if (user) {
-        // Generate a token and send it back
-        const token = generateToken(user); // Implement token generation
-        res.json({ token });
+            if (result) {
+                // Password matches
+                const token = utils.generateToken(user); // Implement token generation
+                res.json({ token });
+            } else {
+                res.status(401).json({ message: "Invalid credentials" });
+            }
+        });
     } else {
         res.status(401).json({ message: "Invalid credentials" });
     }

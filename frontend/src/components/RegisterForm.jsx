@@ -7,22 +7,38 @@ import { registerUser } from './apiService';
 const RegisterForm = () => {
   const [open, setOpen] = useState(false);
 
+  const [registrationrError, setRegistrationError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmed_password, setconfirmedPassword] = useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async (event) => {
+    setRegistrationError(null);
+
     // Handle password and confirmedPassword don't match
-    // ...
-    registerUser(email, password)
-        .then(response => {
-            console.log(response.data);
-            // Handle successful registration
-        })
-        .catch(error => {
-            console.error(error);
-            // Handle registration errors
-        });
+    if (password !=  confirmed_password) {
+      event.preventDefault(); 
+      setRegistrationError("Password and confirm password do not match.");
+    } else {
+      try {
+        const response = await registerUser(email, password); // Use await to wait for the promise
+        console.log("Got response:", response);
+  
+  
+      } catch (error) {
+        event.preventDefault(); 
+        if (error.response.status === 409) {
+          setRegistrationError("Email already in use. Please choose a different email.");
+        } else {
+          setRegistrationError("An error occurred. Please try again later.");
+        }
+        console.error(error);
+      }
+    }
+
+
   };
+
   // handle toggle password
   const toggle = () => {
     setOpen(!open);
@@ -86,6 +102,7 @@ const RegisterForm = () => {
             className={`h-12 w-full rounded-full pl-4 pr-12 border-[1px] border-[#3C58A0] ${
               open == false ? "font-bold tracking-widest" : ""
             }`}
+            onChange={e => setconfirmedPassword(e.target.value)}
           />
 
           <div className="text-2xl absolute top-3 right-5 cursor-pointer">
@@ -114,6 +131,8 @@ const RegisterForm = () => {
         <button className="mt-8 w-4/5 h-12 rounded-full text-[18px] font-bold text-white bg-[#3C58A0] hover:text-[#3C58A0] hover:bg-white hover:border-[1px] hover:border-[#3C58A0]" onClick={handleRegister}>
           Submit
         </button>
+        {/* Show login error */}
+        {<p className="text-red-500 mt-4">{registrationrError}</p>}
       </form>
 
       {/* Divider horizontal line */}
@@ -158,6 +177,7 @@ const RegisterForm = () => {
           </svg>
         </div>
       </div>
+      
     </div>
   );
 };
