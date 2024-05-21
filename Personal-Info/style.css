@@ -1,0 +1,80 @@
+body {
+    background-color: #BCBCFC;
+    font-family: Montserrat, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    flex-direction: column;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #3C58A0;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#userAvatar {
+    width: 120px;
+    height: 120px;
+}
+
+.box,
+.name-email,
+.stID-birth {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.name,
+.email {
+    flex: 1;
+    margin-right: 10px; /* Adjust as needed */
+}
+
+label {
+    display: block;
+}
+
+input{
+    width: 100%; /* To fill up the available space */
+    box-sizing: border-box; /* Including padding and border in width */
+}
+
+.birthdate-dropdowns {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.birthdate-dropdown {
+    flex: 1;
+    margin-right: 5px; /* Adjust margin as needed */
+}
+
+.phone-input,
+.address-input {
+    display: flex;
+    /* align-items: center; */
+}
+
+.phone-controls,
+.address-controls {
+    display: flex;
+    /* align-items: center; */
+}
+
+#country-code-dropdown,
+#address-code-dropdown {
+    margin-right: 10px; /* Adjust as needed */
+}
+
+
+.hw {
+    display: flex;
+}
