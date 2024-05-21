@@ -13,20 +13,18 @@ const RegisterForm = () => {
   const [confirmed_password, setconfirmedPassword] = useState('');
 
   const handleRegister = async (event) => {
+    event.preventDefault(); 
     setRegistrationError(null);
 
     // Handle password and confirmedPassword don't match
     if (password !=  confirmed_password) {
-      event.preventDefault(); 
-      setRegistrationError("Password and confirm password do not match.");
+      setRegistrationError("Confirm password do not match. Please type again.");
     } else {
       try {
         const response = await registerUser(email, password); // Use await to wait for the promise
         console.log("Got response:", response);
-  
-  
-      } catch (error) {
-        event.preventDefault(); 
+        navigate("/login")
+      } catch (error) {        
         if (error.response.status === 409) {
           setRegistrationError("Email already in use. Please choose a different email.");
         } else {
