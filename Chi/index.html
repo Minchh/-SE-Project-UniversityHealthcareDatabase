@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <div class="avatar-container">
+                <div class="avatar">
+                  <img src="cat.jpg" alt="Avatar" id="userAvatar">
+                  <i class="fas fa-camera" onclick="changeAvatar()"></i>
+                </div>
+                <div class="user-info">
+                  <div class="full-name" id="fullName">Nyan Cat</div>
+                  <div class="gender-location"><i class="fas fa-mars"></i> <span id="userLocation">Ho Chi Minh</span></div>
+                  <div class="height-weight">
+                    <span><strong><span id="userHeight">100</span></strong> cm</span> 
+                    <span><strong><span id="userWeight">9.4</span></strong> kg</span>
+                  </div>
+                </div>
+            </div>
+            <div style="width: 60%; height: 1px; background-color: black;"></div>
+            <ul class="menu">
+                <li data-target="my-profile" onclick="showPanel('my-profile')"><i class="fas fa-user"></i> My Profile</li>
+                <li data-target="change-password" onclick="showPanel('change-password')"><i class="fas fa-lock"></i> Change Password</li>
+                <li data-target="health-details" onclick="showPanel('health-details')"><i class="fas fa-heartbeat"></i> Health Details</li>
+                <li data-target="privacy" class="active" onclick="showPanel('privacy')"><i class="fas fa-cog"></i> Privacy</li>
+                <li data-target="history" onclick="showPanel('history')"><i class="fas fa-history"></i> History</li>
+                <li data-target="help-support" onclick="showPanel('help-support')"><i class="fas fa-question-circle"></i> Help & Support</li>
+              </ul>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <div class="last-updated" id="lastUpdated">Last updated: 2024/05/12 00:34:50</div>
+            
+            <!-- My Profiles -->
+            <div class="panel-content" id="my-profile">
+                <h2 class="panel-title">My Profile</h2>  
+                <div class="change-avatar">               
+                    <div class="avatar">     
+                        <img src="cat.jpg" alt="Avatar" id="userAvatar">
+                    </div>
+                    <div id="change-avatar" onclick="changeAvatar()">
+                        <button>Upload New Photo</button>
+                        <p>
+                            At least 150x150 px is recommended.<br>JPG or PNG is allowed
+                        </p>
+                    </div>
+                </div>      
+                <div class="profile">
+                    <div class="name-email box">
+                        <div class="name">
+                            <label for="name-input">Full Name</label>
+                            <input type="text" id="name-input" placeholder="Enter your Full Name" class="name-input">
+                        </div>
+                        <div class="email">
+                            <label for="email-input">Email</label>
+                            <input type="email" id="email-input" placeholder="Enter your Email" class="email-input">
+                        </div>                 
+                    </div>
+
+                    <div class="stID-birth box">
+                        <div class="stID">
+                            <label for="stID-input">Student ID</label>
+                            <input type="text" id="stID-input" placeholder="Enter your Student ID" class="name-input">
+                        </div>
+                        <div class="birth">
+                            <label for="birth-year">Birthdate</label>
+                            <div class="birthdate-dropdowns">
+                                <select id="birth-year" class="birthdate-dropdown">
+                                    <option value="" disabled selected>Year</option>
+                                </select>
+                                <select id="birth-month" class="birthdate-dropdown">
+                                    <option value="" disabled selected>Month</option>
+                                </select>
+                                <select id="birth-day" class="birthdate-dropdown">
+                                    <option value="" disabled selected>Day</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="phone">
+                        <div class="phone-number">
+                            <label for="phone-number-input">Phone Number</label>
+                            <div class="phone-controls">
+                                <select id="country-code-dropdown">
+                                    <option value="1">+1 (USA)</option>
+                                    <option value="44">+44 (UK)</option>
+                                    <option value="49">+49 (Germany)</option>
+                                    <option value="84">+84 (Vietnam)</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                                <input type="text" id="phone-number-input" placeholder="Enter your phone number">
+                            </div>
+                        </div>                    
+                    </div>
+
+                    <div class="address">
+                        <label for="address-input">Address</label>
+                        <div class="address-controls">
+                            <select id="vietnam-province-dropdown">
+                                <option value="hcm">Ho Chi Minh City</option>
+                                <option value="hn">Hanoi</option>
+                                <option value="dn">Da Nang</option>
+                                <option value="hp">Hai Phong</option>
+                                <option value="ct">Can Tho</option>
+                                <option value="bdu">Binh Duong</option>
+                            </select>                            
+                            <input type="text" id="address-input" placeholder="Enter your Address">
+                        </div>
+                    </div>
+
+                    <div class="save-cancel">
+                        <button>SAVE</button>
+                        <button>CANCEL</button>
+                    </div>
+                </div>    
+            </div>
+
+            <!-- Change Password -->
+            <div class="panel-content" id="change-password">
+                <h2 class="panel-title">Change Password</h2> 
+                <div class="password"> 
+                    <div class="current">                        
+                        <label for="current-input">Current Password</label>
+                        <input type="password" id="current-input" placeholder="Enter your Current Password">
+                    </div> 
+                    <div class="new">                        
+                        <label for="new-input">New Password</label>
+                        <input type="password" id="new-input" placeholder="Enter your New Password">
+                    </div> 
+                    <div class="confirm">                        
+                        <label for="confirm-input">Confirm Password</label>
+                        <input type="password" id="confirm-input" placeholder="Enter your Confirm Password">
+                    </div> 
+                </div> 
+                <div class="save-cancel">
+                    <button>SAVE</button>
+                    <button>CANCEL</button>
+                </div>
+            </div>
+
+            <!-- Health Details -->
+            <div class="panel-content" id="health-details">
+                <h2 class="panel-title">Health Details</h2>  
+                <div class="health">
+                    <div class="blood-gender box">                        
+                        <div class="blood">
+                            <label for="blood-input">Blood ID</label>
+                            <input type="text" id="blood-input" placeholder="Enter your Blood ID" class="blood-input">
+                        </div>
+                        <div class="gender">
+                            <label for="gender-dropdown">Gender</label>                            
+                            <select id="gender-dropdown">
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>        
+                    </div>
+
+                    <div class="height-weight box">
+                        <div class="height">
+                            <label for="height-input">Body Height</label>  
+                            <div class="hw">                   
+                                <select id="height-dropdown">
+                                    <option value="cm">cm</option>
+                                    <option value="feet">feet</option>
+                                    <option value="inch">inch</option>
+                                </select>
+                                <input type="text" id="height-input" placeholder="Enter your Body Height" class="height-input">
+                            </div>  
+                        </div>
+                        <div class="weight">
+                            <label for="weight-input">Body Weight</label> 
+                            <div class="hw">                                           
+                                <select id="weight-dropdown">
+                                    <option value="kg">Kg</option>
+                                    <option value="lb">Lb</option>
+                                </select>
+                                <input type="text" id="weight-input" placeholder="Enter your Body Weight" class="weight-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insurance">
+                        <label for="insurance-input">Health Insurance Card ID</label>
+                        <input type="text" id="insurance-input" placeholder="Enter your health insurance card ID">
+                    </div>
+
+                    <div class="allergies">
+                        <label for="allergies-input">Allergies (including drug allergies)</label>
+                        <input type="text" id="allergies-input" placeholder="Enter your allergies">
+                    </div>
+
+                    <div class="problems">
+                        <label for="problems-input">Chronic Health Problems (e.g., high blood pressure)</label>
+                        <input type="text" id="problems-input" placeholder="Enter your health problems">
+                    </div>
+                </div>
+                <div class="save-cancel">
+                    <button>SAVE</button>
+                    <button>CANCEL</button>
+                </div>
+            </div>
+
+            <!-- Privacy -->
+            <div class="panel-content active" id="privacy">
+                <h2 class="panel-title">Privacy</h2>
+                <div class="activity">
+                    <h3>Activity</h3>
+                    <label><input type="checkbox" checked> Email me when my appointment comes</label>
+                    <label><input type="checkbox"> Email me when the latest news thread</label>
+                    <label><input type="checkbox" checked> Email me when check-up is needed</label>
+                  </div>
+                  <div class="application">
+                    <h3>Application</h3>
+                    <label><input type="checkbox"> News and Announcements</label>
+                    <label><input type="checkbox" checked> Weekly Health Updates</label>
+                    <label><input type="checkbox" checked> Weekly Blog Digest</label>
+                  </div>
+                  <div class="connections">
+                    <h3>Connections</h3>
+                    <div>Connect to Twitter</div>
+                    <div>Connected to Google <span class="connection-status"><span class="authorized">[Email Authorized]</span> <span class="remove-connection" onclick="removeConnection('google')">Remove</span></span></div>
+                    <div>Connected to Facebook <span class="connection-status"><span class="unauthorized" onclick="showAuthorizationPanel('facebook')">[Facebook Unauthorized]</span> <span class="remove-connection" onclick="removeConnection('facebook')">Remove</span></span></div>
+                    <div>Connect to Instagram</div>
+                  </div>
+            </div>
+
+            <!-- History -->
+            <div class="panel-content" id="history">
+                <h2 class="panel-title">History</h2>
+                <div class="card-body pb-2">
+                    <table class="table table-striped" data-toggle="table">
+                        <thead>
+                            <tr>
+                                <th data-sortable="true" scope="col">Timestamp</th>
+                                <th scope="col">language</th>
+                                <th scope="col">problem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10/24/2022 8:33:26</td>
+                                <td>C</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>10/24/2022 10:32:26</td>
+                                <td>Python</td>
+                                <td>Runoff</td>
+                            </tr>
+                            <tr>
+                                <td>10/24/2022 11:10:47</td>
+                                <td>Python</td>
+                                <td>Mario</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Help & Support -->
+            <div class="panel-content" id="help-support">
+                <h2 class="panel-title">Help & Support</h2>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
