@@ -68,29 +68,23 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     // Check if email exists and password is correct
-    const userQuery = `SELECT * FROM users WHERE email = ?`;
-    const user = await db.query(userQuery, [email]);
+    db.query('SELECT email, password FROM users where email = ?', [email], async (error, result) => {
+        if (result.length > 0) {
+            const dbPassword = result[0].password; // Assuming result is an array of objects
+            let hashedPassword = await bcrypt.hash(password, dbPassword); // Assuming bcrypt.hash takes password and salt as arguments
 
-    if (user.length > 0) {
-        const dbPassword = user[0].password; // Assuming the password is stored in the 'password' field
-
-        // Compare the hashed password from the database with the provided password
-        bcrypt.compare(password, dbPassword, (err, result) => {
-            if (err) {
-                return res.status(500).json({ message: "Internal server error" });
-            }
-
-            if (result) {
+            // Compare the hashed password from the database with the provided password
+            if (hashedPassword === dbPassword) {
                 // Password matches
-                const token = utils.generateToken(user); // Implement token generation
-                res.json({ token });
+                const token = utils.generateToken(result); // Implement token generation
+                res.status(200).json({ token });
             } else {
                 res.status(401).json({ message: "Invalid credentials" });
             }
-        });
-    } else {
-        res.status(401).json({ message: "Invalid credentials" });
-    }
+        } else {
+            res.status(401).json({ message: "Invalid credentials" });
+        }
+    });
 });
 
 

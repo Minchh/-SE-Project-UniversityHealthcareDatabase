@@ -36,7 +36,13 @@ const LoginForm = () => {
       })
       .catch(error => {
         setLoading(false);
-        setLoginError("An error occurred. Please try again later.");
+        if (error.response.status === 401) {
+          setLoginError("Invalid credentials");
+        } else if (error.response.status === 500){
+          setLoginError("Internal server error" );
+        } else {
+          setLoginError("Invalid credentials");
+        }
         console.error(error);
       });
   };
