@@ -7,6 +7,7 @@ import { registerUser } from './apiService';
 const RegisterForm = () => {
   const [open, setOpen] = useState(false);
 
+  const [checkBox, setCheckBox] = useState(false);
   const [registrationrError, setRegistrationError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,6 +20,8 @@ const RegisterForm = () => {
     // Handle password and confirmedPassword don't match
     if (password !=  confirmed_password) {
       setRegistrationError("Confirm password do not match. Please type again.");
+    } else if (!checkBox) {
+      setRegistrationError("Please agree to Privacy Policy to register.");
     } else {
       try {
         const response = await registerUser(email, password); // Use await to wait for the promise
@@ -115,6 +118,7 @@ const RegisterForm = () => {
             type="checkbox"
             value=""
             className="w-4 h-4 text-[#3C58A0] bg-white border-white rounded-full focus:ring-[#3C58A0]"
+            onChange={() => setCheckBox(!checkBox)}
           />
           <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium">
             I agree to the{" "}
