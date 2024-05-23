@@ -13,19 +13,16 @@ const LoginForm = () => {
     setOpen(!open);
   };
 
-  const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   // handle login
   const handleLogin = () => {
-    setLoading(true);
     setLoginError(null);
   
     loginUser(email, password)
       .then(response => {
-        setLoading(false);
         if (response.status === 200) {
           const token = response.data.token;
           localStorage.setItem('token', token);
@@ -35,7 +32,6 @@ const LoginForm = () => {
         }
       })
       .catch(error => {
-        setLoading(false);
         if (error.response.status === 401) {
           setLoginError("Invalid credentials");
         } else if (error.response.status === 500){
@@ -99,9 +95,8 @@ const LoginForm = () => {
         </div>
 
         {/* Submit button */}
-        <button className="mt-8 w-4/5 h-12 rounded-full text-[18px] font-bold text-white bg-[#3C58A0] hover:text-[#3C58A0] hover:bg-white hover:border-[1px] hover:border-[#3C58A0]" onClick={handleLogin} disabled={loading}>
+        <button className="mt-8 w-4/5 h-12 rounded-full text-[18px] font-bold text-white bg-[#3C58A0] hover:text-[#3C58A0] hover:bg-white hover:border-[1px] hover:border-[#3C58A0]" onClick={handleLogin}>
           Submit
-          {loading ? "Logging in..." : ""}
         </button>
       </form>
       {/* Show login error */}
