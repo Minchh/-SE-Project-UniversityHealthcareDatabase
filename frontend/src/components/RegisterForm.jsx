@@ -16,9 +16,13 @@ const RegisterForm = () => {
   const handleRegister = async (event) => {
     event.preventDefault(); 
     setRegistrationError(null);
-
+    if (email == "") {
+      setRegistrationError("Please input email.");
+    } else if (password == "") {
+      setRegistrationError("Please input password.");
+    } 
     // Handle password and confirmedPassword don't match
-    if (password !=  confirmed_password) {
+    else if (password !=  confirmed_password) {
       setRegistrationError("Confirm password do not match. Please type again.");
     } else if (!checkBox) {
       setRegistrationError("Please agree to Privacy Policy to register.");

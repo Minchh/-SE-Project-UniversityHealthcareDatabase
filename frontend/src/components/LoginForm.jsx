@@ -18,29 +18,35 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
 
   // handle login
-  const handleLogin = () => {
+  const handleLogin = async(event) => {
+    event.preventDefault(); 
     setLoginError(null);
-  
-    loginUser(email, password)
-      .then(response => {
-        if (response.status === 200) {
-          const token = response.data.token;
-          localStorage.setItem('token', token);
-          navigate("/home"); // Navigate to the home page
-        } else {
-          setLoginError("Login failed. Please check your credentials.");
-        }
-      })
-      .catch(error => {
-        if (error.response.status === 401) {
-          setLoginError("Invalid credentials");
-        } else if (error.response.status === 500){
-          setLoginError("Internal server error" );
-        } else {
-          setLoginError("Invalid credentials");
-        }
-        console.error(error);
-      });
+    if (email == "") {
+      setLoginError("Please input email.");
+    } else if (password == "") {
+      setLoginError("Please input password.");
+    } else {
+      loginUser(email, password)
+        .then(response => {
+          if (response.status === 200) {
+            const token = response.data.token;
+            localStorage.setItem('token', token);
+            navigate("/home"); // Navigate to the home page
+          } else {
+            setLoginError("Login failed. Please check your credentials.");
+          }
+        })
+        .catch(error => {
+          if (error.response.status === 401) {
+            setLoginError("Invalid credentials");
+          } else if (error.response.status === 500){
+            setLoginError("Internal server error" );
+          } else {
+            setLoginError("Invalid credentials");
+          }
+          console.error(error);
+        });
+    }
   };
 
   const navigate = useNavigate();
