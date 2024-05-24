@@ -1,3 +1,69 @@
+
+
+function toggleLeftPanel() {
+    const leftPanel = document.querySelector('.left-panel');
+    leftPanel.classList.toggle('active');
+}
+
+window.onclick = function(event) {
+    const leftPanel = document.querySelector('.left-panel');
+    const leftPanelIcon = document.querySelector('.left-panel-icon');
+
+    if (event.target === leftPanelIcon) {
+        return;
+    }
+
+    if (leftPanel.classList.contains('active') && !leftPanel.contains(event.target)) {
+        leftPanel.classList.remove('active');
+    }
+};
+
+function showPanel(panelId) {
+    const panels = document.querySelectorAll('.panel-content');
+    const menuItems = document.querySelectorAll('.menu li');
+    const leftPanel = document.querySelector('.left-panel');
+
+    panels.forEach(panel => {
+        if (panel.id === panelId) {
+            panel.classList.add('active');
+        } else {
+            panel.classList.remove('active');
+        }
+    });
+
+    menuItems.forEach(item => {
+        if (item.getAttribute('data-target') === panelId) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+
+    // Close the left panel after selecting an option
+    leftPanel.classList.remove('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuItems = document.querySelectorAll('.menu li');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Remove active class from all menu items
+            menuItems.forEach(i => i.classList.remove('active', 'click-effect'));
+
+            // Add click effect class to the clicked menu item
+            item.classList.add('click-effect');
+
+            // After a short delay, add the active class and remove the click effect class
+            setTimeout(() => {
+                item.classList.remove('click-effect');
+                item.classList.add('active');
+            }, 100); // Delay in milliseconds, adjust as needed
+        });
+    });
+});
+
+
 // Get current date
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Form with Panels</title>
+    <style>
+        body {
+            background-color: #BCBCFC;
+            font-family: Montserrat, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            user-select: none; 
+            justify-content: space-between;
+            width: 80%;
+            transition: width 0.3s ease;
+        }
+
+        .left-panel {
+            width: 220px;
+            height: 600px;
+            background-color: #DADBFF;
+            border-radius: 15px;
+            margin-right: 30px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease, margin-right 0.3s ease;
+        }
+
+        .profile-section {
+            text-align: center;
+        }
+
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .avatar {
+            position: relative;
+            display: inline-block;
+        }
+
+        .avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 5px solid #3C58A0;
+        }
+
+        .avatar .fa-camera {
+            position: absolute;
+            bottom: 5px;
+            right: 0;
+            background-color: #3C58A0;
+            border-radius: 50%;
+            padding: 8px;
+            cursor: pointer;
+            color: #DADBFF;
+            font-size: 15px;
+            z-index: 10;
+        }
+
+        .user-info {
+            text-align: center;
+        }
+
+        .fullname {
+            font-weight: 600;
+            color: #3C58A0;
+            font-size: 20px;
+            padding-bottom: 5px;
+        }
+
+        .gender-location {
+            font-size: 14px;
+            color: #3C58A0;
+            padding: 2px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .gender-location span {
+            font-size: 12px;
+        }
+
+        .gender-location strong {
+            font-weight: 500;
+        }
+
+        .height-weight {
+            font-size: 14px;
+            color: #3C58A0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .height-weight strong {
+            font-weight: 800;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .height-weight p {
+            margin: 0;
+        }
+
+        .line {
+            width: 95%; 
+            height: 2px;
+            background-color: #3C58A0;
+            margin: 15px auto; 
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            font-size: 16px;
+            padding: 12px 15px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; 
+        }
+
+        .menu li i {
+            margin-right: 10px;
+        }
+
+        .menu li.active {
+            background-color: #3C58A0;
+            color: #FFFFFF;
+        }
+
+        .menu li:not(.active) {
+            color: #3C58A0;
+        }
+
+        .menu li:focus {
+            background-color: #6C80BD;
+        }
+
+        .menu li:hover {
+            background-color: #3C58A0;
+            color: #FFFFFF;
+        }
+
+        .menu li.click-effect {
+            background-color: #6C80BD; 
+            color: #FFFFFF;
+        }
+
+        .right-panel {
+            position: relative;
+            background-color: #FAFBFF;
+            width: 1050px;
+            height: 600px;
+            border-radius: 15px;
+            padding: 20px;
+            transition: width 0.3s ease;
+        }
+
+        .right-panel > div {
+            flex: 1;
+        }
+
+        .last-updated {
+            text-align: right;
+            font-weight: 600;
+            font-size: 12px;
+            color: #3C58A0;
+        }
+
+        .panel-content {
+            display: none;
+            flex-direction: column;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        .panel-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #3C58A0;
+            margin-bottom: 20px;
+            padding: 0 30px;
+        }
+
+        .change-avatar {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 10px 0;
+        }
+
+        .change-avatar .avatar {
+            padding: 0 30px;
+        }
+
+        .avatar-btn button {
+            background-color: transparent;
+            border: 3px solid #3C58A0;
+            outline: none;
+            color: #3C58A0;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 8px;
+            font-weight: 400;
+        }
+
+        .avatar-btn button:hover {
+            background-color: #3C58A0;
+            color: #FFFFFF;
+        }
+
+        .avatar-btn button:active {
+            background-color: #6C80BD;
+            color: #FFFFFF;
+        }
+
+        .avatar-btn {
+            justify-content: space-around;
+            padding: 10px 20px;
+            align-items: center;
+        }
+
+        .avatar-btn p {
+            font-size: 15px;
+            color: #3C58A0;
+        }
+
+        .panel {
+            padding: 0 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 100px;
+            justify-content: space-between;
+        }
+
+        .box {
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .form-line {
+            margin-bottom: 20px;
+            justify-content: space-between;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #3C58A0;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%; 
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            box-sizing: border-box; 
+            color: #758ABD;
+            height: 36px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            outline: none;
+            border: 2px solid #3C58A0;
+            font-size: 15px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            color: #3C58A0;
+        }
+
+        .birthdate-dropdowns,
+        .phone-controls,
+        .address-controls,
+        .hw {
+            display: flex;
+            gap: 10px;
+        }
+
+        .birthdate-dropdowns select {
+            width: 100%; 
+        }
+
+        ::placeholder,
+        select {
+            color: #758ABD;
+        }
+
+        .activities label,
+        .applications label,
+        .connections > div {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .privacy-settings h3 {
+            color: #3C58A0;
+            margin-bottom: 15px;
+        }
+
+        .privacy-settings label,
+        .privacy-settings p {
+            font-weight: 500;
+            display: block;
+            color: #3C58A0;
+            margin-bottom: 5px;
+        }
+
+        input[type="checkbox"] {
+            accent-color: #3C58A0;
+        }
+
+        .save-cancel {
+            position: absolute;
+            padding: 40px;
+            display: flex;
+            text-align: bottom;
+            bottom: 0;
+            right: 0;
+            gap: 10px;
+        }
+
+        .save-cancel .btn {
+            outline: none;
+            border: none;
+            height: 40px;
+            width: 80px;
+            border-radius: 5px;    
+        }
+
+        .save-btn {
+            background-color: #6C80BD;
+            color: #FFFFFF;
+        }
+
+        .cancel-btn {
+            background-color: transparent;
+            color: #3C58A0;
+        }
+
+        .connections a.remove {
+            margin-left: auto;
+            color: #3C58A0;
+            text-decoration: none;
+            cursor: pointer;
+            right: 0;
+        }
+
+        .connections a.remove:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                width: 75%;
+            }
+
+            .left-panel {
+                width: 165px;
+                margin-right: 20px;
+            }
+
+            .right-panel {
+                width: 787px;
+            }
+
+            .form-group {
+                gap: 80px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                width: 50%;
+            }
+
+            .left-panel {
+                display: none;
+            }
+
+            .right-panel {
+                width: calc(100% - 30px);
+            }
+
+            .left-panel-icon {
+                display: block;
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                background-color: #DADBFF;
+                border-radius: 50%;
+                padding: 10px;
+                cursor: pointer;
+                z-index: 100;
+            }
+
+            .left-panel.active {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 101;
+                height: 100vh;
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-panel-icon" onclick="toggleLeftPanel()">
+        <i class="fa fa-bars"></i>
+    </div>
+    <div class="container">
+        <div class="left-panel">
+            <div class="profile-section">
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <img src="avatar.jpg" alt="Avatar">
+                        <i class="fa fa-camera"></i>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="fullname">Nyan Cat</div>
+                    <div class="gender-location">
+                        <span>Male</span>
+                        <strong>|</strong>
+                        <span>Ho Chi Minh</span>
+                    </div>
+                    <div class="height-weight">
+                        <div><strong>170</strong> cm</div>
+                        <div><strong>60</strong> kg</div>
+                    </div>
+                </div>
+            </div>
+            <div class="line"></div>
+            <ul class="menu">
+                <li class="active"><i class="fa fa-home"></i>Home</li>
+                <li><i class="fa fa-user"></i>Profile</li>
+                <li><i class="fa fa-cog"></i>Settings</li>
+                <li><i class="fa fa-sign-out"></i>Logout</li>
+            </ul>
+        </div>
+        <div class="right-panel">
+            <div class="last-updated">Last updated: 23 May 2024</div>
+            <div class="panel-content active">
+                <div class="panel-title">Personal Information</div>
+                <div class="change-avatar">
+                    <div class="avatar">
+                        <img src="avatar.jpg" alt="Avatar">
+                        <i class="fa fa-camera"></i>
+                    </div>
+                    <div class="avatar-btn">
+                        <button>Change Avatar</button>
+                    </div>
+                </div>
+                <div class="panel">
+                    <form>
+                        <div class="form-group">
+                            <div class="box">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" value="Nyan Cat">
+                            </div>
+                            <div class="box">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" value="nyancat@gmail.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="box">
+                                <label for="studentId">Student ID</label>
+                                <input type="text" id="studentId" name="studentId" value="ITTITIU21000">
+                            </div>
+                            <div class="box">
+                                <label for="birthdate">Birthdate</label>
+                                <div class="birthdate-dropdowns">
+                                    <select id="birthYear" name="birthYear">
+                                        <option value="YYYY">YYYY</option>
+                                    </select>
+                                    <select id="birthMonth" name="birthMonth">
+                                        <option value="MM">MM</option>
+                                    </select>
+                                    <select id="birthDay" name="birthDay">
+                                        <option value="DD">DD</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="box">
+                                <label for="phoneNumber">Phone Number</label>
+                                <div class="phone-controls">
+                                    <select id="countryCode" name="countryCode">
+                                        <option value="+84">+84</option>
+                                    </select>
+                                    <input type="text" id="phoneNumber" name="phoneNumber" value="987 654 321">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <label for="address">Address</label>
+                                <div class="address-controls">
+                                    <select id="city" name="city">
+                                        <option value="Ho Chi Minh">Ho Chi Minh</option>
+                                    </select>
+                                    <input type="text" id="fullAddress" name="fullAddress" placeholder="Please enter your full address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="save-cancel">
+                            <button type="submit" class="btn save-btn">Save</button>
+                            <button type="button" class="btn cancel-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleLeftPanel() {
+            const leftPanel = document.querySelector('.left-panel');
+            leftPanel.classList.toggle('active');
+        }
+
+        window.onclick = function(event) {
+            const leftPanel = document.querySelector('.left-panel');
+            const leftPanelIcon = document.querySelector('.left-panel-icon');
+
+            if (event.target === leftPanelIcon) {
+                return;
+            }
+
+            if (leftPanel.classList.contains('active') && !leftPanel.contains(event.target)) {
+                leftPanel.classList.remove('active');
+            }
+        };
+    </script>
+</body>
+</html>
