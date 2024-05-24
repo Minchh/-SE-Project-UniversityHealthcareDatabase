@@ -1,9 +1,12 @@
 A Software Engineering Project
 =======
-Tech:
+Tech Frontend:
 - Build tool: Vite
+- Language: Javascript + SWC
 - Library: React
-- CSS framework: Tailwindcss
+- Styling: CSS
+
+Tech Backend:
 
 Mọi người làm theo các bước sau để chạy web:
 - Clone brach về.
@@ -12,7 +15,7 @@ Mọi người làm theo các bước sau để chạy web:
 - chạy npm run dev để chạy local (thêm --host nếu mọi người muốn chạy network).
 - Rồi click vào url localhost, kèm theo /login hoặc /register trong url, hiện chưa có index page.
 
-Các buớc cần làm đê chạy database (local) và backend:
+Các buớc cần làm để chạy database (local) và backend:
 - Tạo database (local) bằng XAMPP 
   - Tải XAMPP
   - Start Apache Web Server và MySQL Database
