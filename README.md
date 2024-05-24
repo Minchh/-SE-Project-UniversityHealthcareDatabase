@@ -29,8 +29,8 @@ Các buớc cần làm để chạy database (local) và backend:
   - Chọn AI (Auto Increment) cho mục extra của cột user_ID
 - Chạy backend:
   - Mở terminal tại dicrectory **backend**, hoặc cd vào folder **backend**
-  - Chạy npm install (đã cài nodeJS), để tải các dependencies.
-  - Chạy lệnh: node index.js
+  - Chạy <code>npm install</code> (đã cài nodeJS), để tải các dependencies.
+  - Chạy lệnh: <code>node index.js</code>
 
 Các package cần tải thêm:
 - frontend:
