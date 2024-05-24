@@ -5,6 +5,7 @@
   display: flex;
   flex-flow: column;
   justify-content: center;
+  order: 1;
 }
 
 .login-back {
@@ -194,6 +195,10 @@
 
 /* Desktop & Laptop */
 @media screen and (min-width: 640px) {
+  .register-container {
+    order: 2;
+  }
+
   .login-back {
     margin-top: 36px;
     text-align: left;

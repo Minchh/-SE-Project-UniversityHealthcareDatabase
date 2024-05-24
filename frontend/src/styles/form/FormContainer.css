@@ -4,12 +4,12 @@
   background-color: var(--primary-bg-color);
   position: relative;
   display: flex;
-  flex-flow: column;
   justify-content: center;
   align-items: center;
 }
 
 .form-container {
+  display: grid;
   --form-padding: 2rem;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   background-color: #fff;
@@ -28,7 +28,6 @@
     width: calc(100% - 15% - 2 * var(--form-padding));
     height: calc(100% - 20% - 2 * var(--form-padding));
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
