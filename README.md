@@ -11,9 +11,13 @@ Tech Backend:
 Mọi người làm theo các bước sau để chạy web:
 - Clone brach về.
 - cd vào thư mục se-university-healthcare-database.
-- chạy npm install (đã cài nodeJS), để tải các dependencies.
-- chạy npm run dev để chạy local (thêm --host nếu mọi người muốn chạy network).
-- Rồi click vào url localhost, kèm theo /login hoặc /register trong url, hiện chưa có index page.
+- Tiếp theo là tải dependencies về:
+  - Nếu mọi người dùng npm thì gõ <code>npm install</code>.
+  - Nếu mọi người dùng yarn thì gõ <code>yarn</code>.
+- Cách để chạy web (thêm --host nếu mọi người muốn chạy network - phải chung mạng của local):
+  - Nếu npm: chạy <code>npm run dev</code> để chạy local máy mình.
+  - Nếu yarn: chạy <code>yarn dev</code> để chạy local trên máy mình.
+- Rồi click vào url localhost, kèm theo /login hoặc /register trong url, index sẽ là home page.
 
 Các buớc cần làm để chạy database (local) và backend:
 - Tạo database (local) bằng XAMPP 
