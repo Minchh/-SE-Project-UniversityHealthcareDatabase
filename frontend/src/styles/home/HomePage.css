@@ -10,14 +10,12 @@
   .home-nav {
     display: grid;
     grid-template-rows: repeat(1, 10vh);
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-areas: "main login";
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
     margin-top: 32px;
   }
 
   .home-nav .home-nav-main {
-    grid-area: main;
     justify-self: start;
     margin-left: 120px;
     text-decoration: none;
@@ -28,7 +26,6 @@
   }
 
   .home-nav .home-nav-login {
-    grid-area: login;
     justify-self: end;
     margin-right: 120px;
     color: #fff;
