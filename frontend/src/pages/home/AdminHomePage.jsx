@@ -11,7 +11,7 @@ import notiBell from "../../assets/imgs/noti_bell.png";
 
 import "../../styles/home/UserHomePage.css";
 
-const UserHomePage = () => {
+const AdminHomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const UserHomePage = () => {
             </div>
             <hr />
             <a href="" onClick={() => navigate("/")}>Home Page</a>
-            <a href="">My Profile</a>
+            <a href="">Aministrator Console</a>
             <a href="">Setting</a>
             <a href="" onClick={() => navigate("/")}>Log out</a>
           </div>
@@ -74,4 +74,4 @@ const UserHomePage = () => {
     </main>
   );
 };
-export default UserHomePage;
+export default AdminHomePage;
