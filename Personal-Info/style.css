@@ -391,6 +391,57 @@ input[type="checkbox"] {
     text-decoration: underline;
 }
 
+.table {
+    height: 500px;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    color: #3C58A0;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th:first-child,
+td:first-child {
+    width: 30%; 
+    max-width: 30%; 
+}
+th:last-child,
+td:last-child {
+    width: 70%; 
+    max-width: 70%; 
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #DADBFF;
+    text-align: left;
+}
+th {
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    background-color: #BCBCFC;
+    z-index: 1;
+}
+
+::-webkit-scrollbar {
+    width: 10px; 
+}
+::-webkit-scrollbar-track {
+    background: #DADBFF; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #758ABD; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3C58A0; 
+    border-radius: 5px;
+}
+
 /* .remove-connection a{} */
 @media (max-width: 1200px) {
     .form-group {
