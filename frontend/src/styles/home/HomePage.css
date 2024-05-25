@@ -1,0 +1,93 @@
+/* Mobile */
+
+/* Desktop & Laptop */
+@media screen and (min-width: 640px) {
+  main {
+    width: 100%;
+    height: min-content;
+  }
+
+  .home-nav {
+    display: grid;
+    grid-template-rows: 10vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "main login";
+    align-items: center;
+    margin-top: 32px;
+  }
+
+  .home-nav .home-nav-main {
+    grid-area: main;
+    justify-self: start;
+    margin-left: 120px;
+    text-decoration: none;
+    color: #2e3191;
+    font-size: 40px;
+    line-height: 49px;
+    font-weight: 600;
+  }
+
+  .home-nav .home-nav-login {
+    grid-area: login;
+    justify-self: end;
+    margin-right: 120px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #bcbcfc;
+    border-radius: 20px;
+    background-color: #ad2fff;
+    padding: 24px 32px;
+  }
+
+  .home-hero {
+    display: grid;
+    grid-template-rows: 260px;
+    grid-template-columns: 4.5fr 3fr;
+    grid-template-areas: "title img";
+    align-items: center;
+    padding-bottom: 27px;
+    background-image: url(../../assets/imgs/homepage-ellipse.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 16.5vh;
+  }
+
+  .home-hero .home-hero-title {
+    grid-area: title;
+    text-align: center;
+    width: 75%;
+    font-size: 3.5vw;
+    color: #2e3191;
+    font-weight: 600;
+    margin-left: 160px;
+  }
+
+  .home-hero .home-hero-title span {
+    color: #ad2fff;
+  }
+
+  .home-hero .home-hero-img {
+    height: 130%;
+    width: 100%;
+    display: block;
+    position: relative;
+    left: -5%;
+  }
+
+  .home-hero .home-hero-img img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .home-news {
+    height: min-content;
+    background-color: #dadbff;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 300px) 1fr;
+    height: 100vh;
+  }
+}
