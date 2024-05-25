@@ -19,6 +19,7 @@ const UserHomePage = () => {
   }, []);
 
   const [openSubMenu, setOpenSubMenu] = useState(false); 
+  const [openNotiMenu, setOpenNotiMenu] = useState(false);
 
   const news1Title = "In Conversation: Is intermittent fasting actually bad for your heart?";
   const news1Para =
@@ -31,11 +32,17 @@ const UserHomePage = () => {
   return (
     <main>
       <nav className="home-nav">
-        <a className="home-nav-main" href="" onClick={() => navigate("/")}>
+        <a className="home-nav-main" href="" onClick={() => navigate("/user/home")}>
           Group2.io
         </a>
 
-        <img className="home-noti-bell" src={notiBell} alt="Bell Notification" />
+        <img className="home-noti-bell" src={notiBell} alt="Bell Notification" onClick={() => setOpenNotiMenu(!openNotiMenu)} />
+
+        <div className={`home-noti-menu-wrap${openNotiMenu === true ? " open-noti" : ""}`}>
+          <div className="home-noti-menu">
+            <p>No notifications</p>
+          </div>
+        </div>
 
         <img className="home-user-pic" src={tempAva} alt={`${tempAva}`} onClick={() => setOpenSubMenu(!openSubMenu)}/>
 
@@ -49,7 +56,7 @@ const UserHomePage = () => {
               </div>
             </div>
             <hr />
-            <a href="" onClick={() => navigate("/")}>Home Page</a>
+            <a href="" onClick={() => navigate("/user/home")}>Home Page</a>
             <a href="">My Profile</a>
             <a href="">Setting</a>
             <a href="" onClick={() => navigate("/")}>Log out</a>

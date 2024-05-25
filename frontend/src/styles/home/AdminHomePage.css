@@ -49,6 +49,38 @@
       margin-right: 120px;
       object-fit: cover;
     }
+
+    .home-noti-menu-wrap {
+      position: absolute;
+      top: 100%;
+      right: 240px;
+      width: 332px;
+      max-height: 0px;
+      overflow: hidden;
+      transition: max-height 0.2s;
+    }
+  
+    .home-noti-menu-wrap.open-noti {
+      max-height: 400px;
+    }
+  
+    .home-noti-menu {
+      background: #fff;
+      padding: 20px;
+      margin-top: 10px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+      border: 1px solid #dadbff;
+      border-radius: 30px;
+    }
+  
+    .home-noti-menu p {
+      display: block;
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 20px;
+      padding: 16px 32px;
+      text-align: center;
+    }
   
     .home-sub-menu-wrap {
       position: absolute;
