@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import catAva from "../../assets/imgs/cat.jpg";
 
@@ -53,7 +53,7 @@ const Personal = () => {
     { id: "health-details", icon: faHeartbeat, label: "Health Details" },
     { id: "privacy", icon: faCog, label: "Privacy" },
     { id: "history", icon: faHistory, label: "History" },
-    { id: "help-support", icon: faQuestionCircle, label: "Help &amp; Support" },
+    { id: "help-support", icon: faQuestionCircle, label: "Help & Support" },
   ];
 
   const showPanel = (panelId) => {
@@ -97,9 +97,9 @@ const Personal = () => {
   const currentDay = currentDate.getDate();
 
   // State for selected year, month, and day
-  const [selectedYear, setSelectedYear] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [selectedDay, setSelectedDay] = useState("");
+  const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+  const [selectedDay, setSelectedDay] = useState(currentDay);
   const [daysInMonth, setDaysInMonth] = useState(31);
 
   useEffect(() => {
