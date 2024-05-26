@@ -375,10 +375,22 @@ input[type="checkbox"] {
 .save-btn {
   background-color: #6c80bd;
   color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.5s;
 }
+
+.save-cancel .save-btn:hover {
+  background-color: #4d76fd;
+}
+
 .cancel-btn {
   background-color: transparent;
   color: #3c58a0;
+  cursor: pointer;
+}
+
+.save-cancel .cancel-btn:hover {
+  border: 1px solid #6c80bd;
 }
 
 .connections a.remove {
