@@ -171,19 +171,33 @@ app.post('/changePassword', async (req, res) => {
 
 // Save Health Details
 app.post('/saveHealthDetails', (req, res) => {
-    const { bloodId, gender, height, weight, insuranceId, allergies, healthProblems } = req.body;
-    const userEmail = req.body.email; // Assuming email is sent in the request body
+    const { userId, bloodId, gender, height, weight, insuranceId, allergies, healthProblems } = req.body;
+    
+    // Construct the query to insert or update health details in the 'record' table
+    const query = `
+        INSERT INTO record (user_ID, blood_ID, bodyHeight, bodyWeight, gender, healthInsurance_ID, chronicHealthProblem, allergies)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE 
+            blood_ID = VALUES(blood_ID), 
+            bodyHeight = VALUES(bodyHeight), 
+            bodyWeight = VALUES(bodyWeight), 
+            gender = VALUES(gender), 
+            healthInsurance_ID = VALUES(healthInsurance_ID), 
+            chronicHealthProblem = VALUES(chronicHealthProblem), 
+            allergies = VALUES(allergies)
+    `;
 
-    const query = 'UPDATE users SET bloodId = ?, gender = ?, height = ?, weight = ?, insuranceId = ?, allergies = ?, healthProblems = ? WHERE email = ?';
-    const values = [bloodId, gender, JSON.stringify(height), JSON.stringify(weight), insuranceId, allergies, healthProblems, userEmail];
+    const values = [userId, bloodId, height, weight, gender, insuranceId, healthProblems, allergies];
 
     db.query(query, values, (error, results) => {
         if (error) {
+            console.error('Database update error:', error);
             return res.status(500).json({ message: 'Database update error' });
         }
         res.status(200).json({ message: 'Health details updated successfully' });
     });
 });
+
 
 // Save Privacy Settings
 app.post('/savePrivacySettings', (req, res) => {
