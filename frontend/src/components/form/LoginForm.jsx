@@ -77,11 +77,6 @@ const LoginForm = () => {
           setLoginError("Invalid credentials");
           console.error(error);
         });
-      
-    // const data = await response.json();
-    // console.log(data);
-    // navigate(data.url);
-  
   }
 
   return (

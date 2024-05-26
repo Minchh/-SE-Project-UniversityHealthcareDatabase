@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { registerUser } from "../../services/api/apiService.js";
+import { loginGoogle, registerUser } from "../../services/api/apiService.js";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
@@ -14,6 +14,9 @@ import "../../styles/form/RegisterForm.css";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const handleRedirect = (link) => {
+    window.location.href = link; // Replace with your desired URL
+  };
 
   const [open, setOpen] = useState(false);
 
@@ -57,6 +60,26 @@ const RegisterForm = () => {
       }
     }
   };
+
+  async function auth(event){
+    event.preventDefault();
+    // const response =await fetch('http://localhost:5001/request',{method:'post'});
+    loginGoogle()
+        .then((response) => {
+          console.log(response.data);
+          const data = response.data;
+          handleRedirect(data.url);
+        }) 
+        .catch((error) => {
+          setRegistrationError("Invalid credentials");
+          console.error(error);
+        });
+      
+    // const data = await response.json();
+    // console.log(data);
+    // navigate(data.url);
+  
+  }
 
   return (
     <div className="register-container">
@@ -171,7 +194,7 @@ const RegisterForm = () => {
         <div className="register-form-methods">
           {/* Login with Chrome */}
           <a href="">
-            <img src={googleLogo} alt="Google Logo" width={40} height={40} />
+            <img src={googleLogo} alt="Google Logo" width={40} height={40} onClick={auth}/>
           </a>
 
           {/* Login with Facebook */}
