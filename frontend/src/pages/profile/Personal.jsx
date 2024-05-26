@@ -53,7 +53,7 @@ const Personal = () => {
     { id: "health-details", icon: faHeartbeat, label: "Health Details" },
     { id: "privacy", icon: faCog, label: "Privacy" },
     { id: "history", icon: faHistory, label: "History" },
-    { id: "help-support", icon: faQuestionCircle, label: "Help &amp; Support" },
+    { id: "help-support", icon: faQuestionCircle, label: "Help & Support" },
   ];
 
   const showPanel = (panelId) => {
