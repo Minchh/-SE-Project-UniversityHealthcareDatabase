@@ -87,6 +87,72 @@ app.post("/login", async (req, res) => {
     });
 });
 
+// Save Profile Information
+app.post('/saveProfile', (req, res) => {
+    const { fullName, email, studentId, birthdate, phoneNumber, address } = req.body;
+
+    const query = 'UPDATE users SET fullName = ?, studentId = ?, birthdate = ?, phoneNumber = ?, address = ? WHERE email = ?';
+    const values = [fullName, studentId, birthdate, phoneNumber, JSON.stringify(address), email];
+
+    db.query(query, values, (error, results) => {
+        if (error) {
+            return res.status(500).json({ message: 'Database update error' });
+        }
+        res.status(200).json({ message: 'Profile updated successfully' });
+    });
+});
+
+// Change Password
+app.post('/changePassword', async (req, res) => {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+    const userEmail = req.body.email; // Assuming email is sent in the request body
+
+    if (newPassword !== confirmPassword) {
+        return res.status(400).json({ message: 'New passwords do not match' });
+    }
+
+    db.query('SELECT password FROM users WHERE email = ?', [userEmail], async (error, results) => {
+        if (error) {
+            return res.status(500).json({ message: 'Database query error' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const dbPassword = results[0].password;
+        const isMatch = await bcrypt.compare(currentPassword, dbPassword);
+
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Current password is incorrect' });
+        }
+
+        const hashedNewPassword = await bcrypt.hash(newPassword, 8);
+        db.query('UPDATE users SET password = ? WHERE email = ?', [hashedNewPassword, userEmail], (error, results) => {
+            if (error) {
+                return res.status(500).json({ message: 'Database update error' });
+            }
+            res.status(200).json({ message: 'Password changed successfully' });
+        });
+    });
+});
+
+// Save Health Details
+app.post('/saveHealthDetails', (req, res) => {
+    const { bloodId, gender, height, weight, insuranceId, allergies, healthProblems } = req.body;
+    const userEmail = req.body.email; // Assuming email is sent in the request body
+
+    const query = 'UPDATE users SET bloodId = ?, gender = ?, height = ?, weight = ?, insuranceId = ?, allergies = ?, healthProblems = ? WHERE email = ?';
+    const values = [bloodId, gender, JSON.stringify(height), JSON.stringify(weight), insuranceId, allergies, healthProblems, userEmail];
+
+    db.query(query, values, (error, results) => {
+        if (error) {
+            return res.status(500).json({ message: 'Database update error' });
+        }
+        res.status(200).json({ message: 'Health details updated successfully' });
+    });
+});
+
 
 
 
