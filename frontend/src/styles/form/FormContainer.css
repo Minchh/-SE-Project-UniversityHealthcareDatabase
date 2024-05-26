@@ -1,0 +1,40 @@
+.form {
+  width: 100%;
+  height: min-content;
+  background-color: var(--primary-bg-color);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  display: grid;
+  --form-padding: 2rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  background-color: #fff;
+  padding: var(--form-padding);
+  border-radius: 36px;
+  margin: 16px;
+  height: min-content;
+}
+
+@media screen and (min-width: 640px) {
+  .form {
+    flex-flow: row;
+    height: 100vh;
+  }
+
+  .form-container {
+    width: calc(100% - 10% - 2 * var(--form-padding));
+    height: calc(100% - 5% - 2 * var(--form-padding));
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media screen and (max-height: 765px) {
+    .form-container {
+      height: calc(100% - 10% - 2 * var(--form-padding));
+    }
+  }
+}

@@ -1,0 +1,258 @@
+/* Mobile */
+
+.register-container {
+  color: #3c58a0;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  order: 1;
+}
+
+.register-back {
+  text-align: center;
+}
+
+.register-back a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.register-back a:hover {
+  border-bottom: 1px solid #3c58a0;
+}
+
+.register-back a:visited {
+  color: #3c58a0;
+}
+
+.register-back span {
+  margin-left: 8px;
+}
+
+.register-title {
+  margin-top: 36px;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.register-new-account {
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  line-height: 24px;
+}
+
+.register-new-account a {
+  color: #3c58a0;
+  font-weight: 700;
+}
+
+.register-new-account a:hover {
+  color: #4f72ca;
+}
+
+/* Form: START */
+
+.register-form {
+  margin-top: 37px;
+  margin-left: 32px;
+}
+
+.register-form-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  height: 41px;
+  display: flex;
+  align-items: center;
+}
+
+.register-form-input {
+  border: 1px solid #2e3191;
+  border-radius: 50px;
+  height: 2.5rem;
+  outline: 0;
+  font-size: 18px;
+  color: #2e3191;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: calc(90% - 32px);
+}
+
+.register-form-input::placeholder {
+  color: #2e3191;
+  opacity: 0.7;
+  font-size: 16px;
+}
+
+.register-form-input:focus-visible {
+  border: 1px solid #050a8f;
+  outline: none;
+}
+
+.register-form-input[type="email"] {
+  margin-bottom: 10px;
+}
+
+.register-form {
+  margin-top: 37px;
+}
+
+.register-form-password-container {
+  position: relative;
+}
+
+.register-form-password-toggle {
+  position: absolute;
+  cursor: pointer;
+  font-size: 18px;
+  right: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+  user-select: none;
+}
+
+.register-form-forgot {
+  display: flow-root;
+  font-size: 16px;
+  font-weight: 600;
+  width: 90%;
+  margin-top: 15px;
+}
+
+.register-form-forgot a {
+  display: block;
+  float: right;
+  color: #2e3191;
+  text-decoration: none;
+}
+
+.register-form-forgot a:hover {
+  text-decoration: underline;
+}
+
+.register-form-submit {
+  margin-top: 12px;
+}
+
+.register-form-submit button {
+  width: 90%;
+  height: 52px;
+  border: none;
+  border-radius: 100rem;
+  outline: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #3c58a0;
+  cursor: pointer;
+}
+
+.register-form-submit button:hover {
+  color: #3c58a0;
+  background-color: var(--primary-bg-color);
+  border: 1px solid #3c58a0;
+}
+
+.register-show-error {
+  margin-top: 8px;
+  color: #f56565;
+  font-weight: 600;
+}
+
+.register-form-divider {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin-top: 36px;
+}
+
+.register-form-divider-line {
+  border-top: 1px solid #3c58a0;
+  flex-grow: 2;
+}
+
+.register-form-divider-text {
+  flex-shrink: 1;
+  color: #3c58a0;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.register-form-methods {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.register-privacy-policy {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.register-privacy-policy label {
+  font-size: 16px;
+  margin-left: 2px;
+}
+
+.register-privacy-policy a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.register-privacy-policy a:visited {
+  color: #3c58a0;
+}
+
+.register-privacy-policy a:hover {
+  color: #2e3191;
+}
+
+/* Form: END */
+
+/* Desktop & Laptop */
+@media screen and (min-width: 640px) {
+  .register-container {
+    order: 2;
+  }
+
+  .register-form {
+    margin-left: 0;
+  }
+
+  .register-back {
+    margin-top: 36px;
+    text-align: left;
+  }
+
+  .register-title {
+    text-align: left;
+  }
+
+  .register-new-account {
+    text-align: left;
+    font-size: 20px;
+  }
+
+  /* Laptop */
+  @media screen and (max-height: 765px) {
+    .register-form {
+      margin-top: 16px;
+    }
+
+    .register-back {
+      margin-top: 16px;
+    }
+
+    .register-form-divider {
+      margin-top: 20px;
+    }
+  }
+}
