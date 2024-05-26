@@ -289,14 +289,14 @@ label {
 }
 
 input[type="text"],
-input[type="email"],
-input[type="password"] {
+input[type="email"].email-input,
+input[type="password"].password-input {
   width: 100%;
 }
 
 input[type="text"],
-input[type="email"],
-input[type="password"],
+input[type="email"].email-input,
+input[type="password"].password-input,
 select {
   box-sizing: border-box;
   color: #758abd;

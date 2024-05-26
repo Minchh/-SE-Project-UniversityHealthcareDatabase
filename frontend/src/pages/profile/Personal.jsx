@@ -341,15 +341,30 @@ const Personal = () => {
             <div className="password panel">
               <div className="current form-line">
                 <label htmlFor="current-input">Current Password</label>
-                <input type="password" id="current-input" placeholder="Enter your Current Password" />
+                <input
+                  className="password-input"
+                  type="password"
+                  id="current-input"
+                  placeholder="Enter your Current Password"
+                />
               </div>
               <div className="new form-line">
                 <label htmlFor="new-input">New Password</label>
-                <input type="password" id="new-input" placeholder="Enter your New Password" />
+                <input
+                  className="password-input"
+                  type="password"
+                  id="new-input"
+                  placeholder="Enter your New Password"
+                />
               </div>
               <div className="confirm form-line">
                 <label htmlFor="confirm-input">Confirm Password</label>
-                <input type="password" id="confirm-input" placeholder="Enter your Confirm Password" />
+                <input
+                  className="password-input"
+                  type="password"
+                  id="confirm-input"
+                  placeholder="Enter your Confirm Password"
+                />
               </div>
             </div>
             <div className="save-cancel">
