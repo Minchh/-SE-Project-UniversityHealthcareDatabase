@@ -142,7 +142,7 @@
                     </div>
 
                     <div class="save-cancel">
-                        <button type="submit" class="btn save-btn">SAVE</button>
+                        <button type="button" class="btn save-btn" onclick="saveProfile()">SAVE</button>
                         <button type="button" class="btn cancel-btn">CANCEL</button>
                     </div>
                 </div>    
@@ -234,8 +234,8 @@
                 </div>
 
                 <div class="save-cancel">
-                    <button type="submit" class="btn save-btn">SAVE</button>
-                    <button type="button" class="btn cancel-btn">CANCEL</button>
+                    <button type="button" class="btn save-btn" onclick="saveHealthDetails()">SAVE</button>
+                    <button type="button" class="btn cancel-btn" onclick="resetHealthDetailsForm()">CANCEL</button>
                 </div>
             </div>
 
@@ -278,7 +278,7 @@
             </div>
 
             <!-- History -->
-            <div class="panel-content" id="history">
+           <div class="panel-content" id="history">
                 <h2 class="panel-title">History</h2>
                 <div class="panel" id="table-content">
                     <div class="card-body pb-2 table container">
@@ -290,60 +290,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>2024-05-25 12:00:00</td>
-                                    <td>Content 1</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-03-10 15:20:00</td>
-                                    <td>Content 2</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-02-15 09:45:00</td>
-                                    <td>Content 3</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-01-01 00:00:00</td>
-                                    <td>Content 4</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-11-18 08:30:00</td>
-                                    <td>Content 5</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-11-15 08:30:00</td>
-                                    <td>Content 6</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-05-18 08:30:00</td>
-                                    <td>Content 7</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-05-18 08:30:00</td>
-                                    <td>Content 8</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-05-18 08:30:00</td>
-                                    <td>Content 9</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-05-18 08:30:00</td>
-                                    <td>Content 10</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-05-18 08:30:00</td>
-                                    <td>Content 11</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-05-18 08:30:00</td>
-                                    <td>Content 12</td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Help & Support -->
             <div class="panel-content" id="help-support">
                 <h2 class="panel-title">Help & Support</h2>
@@ -351,5 +304,189 @@
 
         </div>
     </div>
+     <script>
+        // Populate birthdate dropdowns
+        document.addEventListener('DOMContentLoaded', function () {
+            const yearSelect = document.getElementById('birth-year');
+            const monthSelect = document.getElementById('birth-month');
+            const daySelect = document.getElementById('birth-day');
+
+            const currentYear = new Date().getFullYear();
+            for (let year = currentYear; year >= 1900; year--) {
+                let option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            }
+
+            for (let month = 1; month <= 12; month++) {
+                let option = document.createElement('option');
+                option.value = month;
+                option.textContent = month;
+                monthSelect.appendChild(option);
+            }
+
+            monthSelect.addEventListener('change', function () {
+                const selectedYear = yearSelect.value;
+                const selectedMonth = monthSelect.value;
+                updateDays(selectedYear, selectedMonth);
+            });
+
+            yearSelect.addEventListener('change', function () {
+                const selectedYear = yearSelect.value;
+                const selectedMonth = monthSelect.value;
+                updateDays(selectedYear, selectedMonth);
+            });
+
+            function updateDays(year, month) {
+                daySelect.innerHTML = '<option value="" disabled selected>Day</option>';
+                if (year && month) {
+                    const daysInMonth = new Date(year, month, 0).getDate();
+                    for (let day = 1; day <= daysInMonth; day++) {
+                        let option = document.createElement('option');
+                        option.value = day;
+                        option.textContent = day;
+                        daySelect.appendChild(option);
+                    }
+                }
+            }
+        });
+
+        // Save profile function
+        async function saveProfile() {
+            const fullName = document.getElementById('name-input').value;
+            const email = document.getElementById('email-input').value;
+            const studentID = document.getElementById('stID-input').value;
+            const birthYear = document.getElementById('birth-year').value;
+            const birthMonth = document.getElementById('birth-month').value;
+            const birthDay = document.getElementById('birth-day').value;
+            const phoneNumber = document.getElementById('phone-number-input').value;
+            const countryCode = document.getElementById('country-code-dropdown').value;
+            const address = document.getElementById('address-input').value;
+            const province = document.getElementById('vietnam-province-dropdown').value;
+
+            const profileData = {
+                fullName,
+                email,
+                studentID,
+                birthYear,
+                birthMonth,
+                birthDay,
+                phoneNumber,
+                countryCode,
+                address,
+                province
+            };
+
+            try {
+                const response = await fetch('http://localhost:5001/profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(profileData)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Profile saved successfully');
+                } else {
+                    alert('Failed to save profile: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error saving profile:', error);
+                alert('Error saving profile');
+            }
+        }
+    </script>
+    <script>
+        // JavaScript function for saving health details
+        async function saveHealthDetails() {
+            const bloodID = document.getElementById('blood-input').value;
+            const gender = document.getElementById('gender-dropdown').value;
+            const height = document.getElementById('height-input').value;
+            const heightUnit = document.getElementById('height-dropdown').value;
+            const weight = document.getElementById('weight-input').value;
+            const weightUnit = document.getElementById('weight-dropdown').value;
+            const insuranceCardID = document.getElementById('insurance-input').value;
+            const allergies = document.getElementById('allergies-input').value;
+            const healthProblems = document.getElementById('problems-input').value;
+
+            const healthDetailsData = {
+                bloodID,
+                gender,
+                height,
+                heightUnit,
+                weight,
+                weightUnit,
+                insuranceCardID,
+                allergies,
+                healthProblems
+            };
+
+            try {
+                const response = await fetch('http://localhost:5001/saveHealthDetails', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(healthDetailsData)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Health details saved successfully');
+                    resetHealthDetailsForm();
+                } else {
+                    alert('Failed to save health details: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error saving health details:', error);
+                alert('Error saving health details');
+            }
+        }
+
+        function resetHealthDetailsForm() {
+            document.getElementById('blood-input').value = '';
+            document.getElementById('gender-dropdown').value = 'male';
+            document.getElementById('height-input').value = '';
+            document.getElementById('height-dropdown').value = 'cm';
+            document.getElementById('weight-input').value = '';
+            document.getElementById('weight-dropdown').value = 'kg';
+            document.getElementById('insurance-input').value = '';
+            document.getElementById('allergies-input').value = '';
+            document.getElementById('problems-input').value = '';
+        }
+    </script>
+         <script>
+            async function fetchAndPopulateTable() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/users');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+    
+                    const tableBody = document.getElementById('user-table-body');
+                    tableBody.innerHTML = ''; // Clear any existing rows
+    
+                    data.forEach(user => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${user.name}</td>
+                            <td>${user.user_id}</td>
+                            <td>${user.email}</td>
+                            <td>${user.department}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                } catch (error) {
+                    console.error('Error fetching and populating table:', error);
+                }
+            }
+    
+            // Fetch and populate the table when the document is loaded
+            document.addEventListener('DOMContentLoaded', fetchAndPopulateTable);
+        </script>
 </body>
 </html>
