@@ -10,6 +10,10 @@ export const loginUser = async (email, password) => {
   return await axios.post(`${API_URL}/login`, { email, password });
 };
 
+export const loginGoogle = async () => {
+  return await axios.post(`${API_URL}/request`);
+};
+
 // Save Profile Information
 export const saveProfile = async (profileData) => {
   return await axios.post(`${API_URL}/saveProfile`, profileData);

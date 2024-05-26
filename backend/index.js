@@ -5,13 +5,15 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const app = express();
 const utils = require('./utils');
-
+var authRouter = require('./oauth');
+var requestRouter = require('./request');
 
 app.use(cors());
 app.use(express.json());
-
+app.use('/oauth', authRouter);
+app.use('/request', requestRouter);
 dotenv.config({path: './.env'})
-
+const {OAuth2Client} = require('google-auth-library');
 
 
 const db = mysql.createConnection({
@@ -86,6 +88,30 @@ app.post("/login", async (req, res) => {
         }
     });
 });
+
+// Handle Google Login
+app.post('/request', async function(req, res, next) {
+    // res.status(201).json({ message: "Google successful" });
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.header('Referrer-Policy', 'no-referrer-when-downgrade');
+    res.header("Referrer-Policy","no-referrer-when-downgrade");
+    const redirectUrl = `http://localhost:5001/oauth`;
+
+    OAuth2Client = new OAuth2Client(
+        process.env.CLIENT_ID,
+        process.env.CLIENT_SECRET,
+        redirectUrl
+    );
+    // console.log("connected gg");
+
+    const authorizeUrl = OAuth2Client.generateAuthUrl({
+        access_type:'offline',
+        scope:'https://www.googleapis.com/auth/userinfo.profile openid',
+        prompt: 'consent'
+    });
+
+    res.json({url:authorizeUrl})
+})
 
 
 // Save Profile Information
