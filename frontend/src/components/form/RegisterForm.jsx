@@ -46,7 +46,7 @@ const RegisterForm = () => {
         const response = await registerUser(email, password); // Use await to wait for the promise
         console.log("Got response:", response);
         // Navigate to login page
-        // navigate("/login");
+        navigate("/login");
       } catch (error) {
         if (error.response.status === 409) {
           setRegistrationError("Email already in use. Please choose a different email.");
