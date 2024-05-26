@@ -46,7 +46,7 @@ const LoginForm = () => {
             const token = response.data.token;
             localStorage.setItem("token", token);
             // Navigate to thhe home page
-            navigate("/")
+            navigate("/user/profile")
           } else {
             setLoginError("Login failed. Please check your credentials.");
           }

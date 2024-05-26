@@ -116,18 +116,23 @@ app.post('/request', async function(req, res, next) {
 
 // Save Profile Information
 app.post('/saveProfile', (req, res) => {
-    const { fullName, email, studentId, birthdate, phoneNumber, address } = req.body;
-
-    const query = 'UPDATE users SET fullName = ?, studentId = ?, birthdate = ?, phoneNumber = ?, address = ? WHERE email = ?';
-    const values = [fullName, studentId, birthdate, phoneNumber, JSON.stringify(address), email];
-
+    console.log(req.body);
+    const { fullName, email, studentId, birthYear, birthMonth, birthDay, phoneNumber, countryCode, address, province } = req.body;
+  
+    const formattedDate = new Date(birthYear, birthMonth, birthDay).toISOString().slice(0, 10); 
+  
+    const query = 'UPDATE users SET fullname = ?, dateOfBirth = ?, phone = ?, address = ? WHERE email = ?';
+    const values = [fullName, formattedDate, phoneNumber, address, email];
+  
+    console.log("check");
+  
     db.query(query, values, (error, results) => {
-        if (error) {
-            return res.status(500).json({ message: 'Database update error' });
-        }
-        res.status(200).json({ message: 'Profile updated successfully' });
+      if (error) {
+        return res.status(500).json({ message: `Database update error: ${error.message}` }); // Include error message
+      }
+      res.status(200).json({ message: 'Profile updated successfully' });
     });
-});
+  });
 
 // Change Password
 app.post('/changePassword', async (req, res) => {

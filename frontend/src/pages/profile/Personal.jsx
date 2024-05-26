@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import { saveProfile } from "../../services/api/apiService.js";
 
 import catAva from "../../assets/imgs/cat.jpg";
 
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -18,6 +20,7 @@ import {
 import "../../styles/profile/Personal.css";
 
 const Personal = () => {
+  const navigate = useNavigate();
   const [isLeftPanelActive, setIsleftPanelActive] = useState(false);
   const leftPanelRef = useRef(null);
   const leftPanelIconRef = useRef(null);
@@ -142,42 +145,73 @@ const Personal = () => {
   const [address, setAddress] = useState("");
   const [province, setProvince] = useState("");
 
-  const saveProfile = async (event) => {
-    event.preventDefault();
-
-    const profileData = {
-      fullName,
-      email,
-      studentID,
-      birthYear: selectedYear,
-      birthMonth: selectedMonth,
-      birthDay: selectedDay,
-      phoneNumber,
-      countryCode,
-      address,
-      province,
-    };
-
-    try {
-      const response = await fetch("http://localhost:5001/profile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(profileData),
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        alert("Profile saved successfully");
-      } else {
-        alert("Failed to save profile: " + result.message);
-      }
-    } catch (error) {
-      console.error("Error saving profile:", error);
-      alert("Error saving profile");
-    }
+  const profileData = {
+    fullName,
+    email,
+    studentID,
+    birthYear: selectedYear,
+    birthMonth: selectedMonth,
+    birthDay: selectedDay,
+    phoneNumber,
+    countryCode,
+    address,
+    province,
   };
+
+  const saveUserProfile = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await saveProfile(profileData); // Use await to wait for the promise
+      console.log("Got response:", response);
+      // Navigate to login page
+      alert("Profile saved successfully");
+      navigate("/");
+    } catch (error) {
+      if (error.response.status === 409) {
+        alert("Failed to save profile: " + error.response);
+      } else {
+        alert("Error saving profile");
+      }
+      console.error(error);
+    }
+  }
+
+  // const saveProfile = async (event) => {
+  //   event.preventDefault();
+
+  //   const profileData = {
+  //     fullName,
+  //     email,
+  //     studentID,
+  //     birthYear: selectedYear,
+  //     birthMonth: selectedMonth,
+  //     birthDay: selectedDay,
+  //     phoneNumber,
+  //     countryCode,
+  //     address,
+  //     province,
+  //   };
+
+  //   try {
+  //     const response = await fetch("http://localhost:5001/profile", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(profileData),
+  //     });
+
+  //     const result = await response.json();
+  //     if (result.success) {
+  //       alert("Profile saved successfully");
+  //     } else {
+  //       alert("Failed to save profile: " + result.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error saving profile:", error);
+  //     alert("Error saving profile");
+  //   }
+  // };
 
   const resetProfileForm = () => {
     setFullName("");
@@ -257,7 +291,7 @@ const Personal = () => {
 
   const fetchAndPopulateTable = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/users");
+      const response = await fetch("http://localhost:5001/api/users");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -269,7 +303,7 @@ const Personal = () => {
   };
 
   useEffect(() => {
-    fetchAndPopulateTable();
+    // fetchAndPopulateTable();
   }, []);
 
   return (
@@ -489,7 +523,7 @@ const Personal = () => {
                 </div>
               </div>
               <div className="save-cancel">
-                <button type="submit" className="btn save-btn" onClick={saveProfile}>
+                <button type="submit" className="btn save-btn" onClick={saveUserProfile}>
                   SAVE
                 </button>
                 <button type="button" className="btn cancel-btn" onClick={resetProfileForm}>
