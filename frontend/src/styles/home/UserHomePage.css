@@ -105,30 +105,30 @@
     border-radius: 30px;
   }
 
-  .user-info {
+  .home-user-info {
     display: flex;
     align-items: center;
     gap: 12px;
   }
 
-  .user-info img {
+  .home-user-info img {
     width: 70px;
     height: 70px;
     border-radius: 100rem;
   }
 
-  .user-info .user-info-identity {
+  .home-user-info .home-user-info-identity {
     text-align: center;
     font-size: 20px;
     line-height: 24.38px;
   }
 
-  .user-info .user-info-identity .user-info-name {
+  .home-user-info .home-user-info-identity .home-user-info-name {
     font-weight: 400;
     margin-bottom: 4px;
   }
 
-  .user-info .user-info-identity .user-info-id {
+  .home-user-info .home-user-info-identity .home-user-info-id {
     font-weight: 300;
   }
 

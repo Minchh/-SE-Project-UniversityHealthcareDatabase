@@ -19,7 +19,7 @@ const AdminHomePage = () => {
   }, []);
 
   const [openSubMenu, setOpenSubMenu] = useState(false);
-  const [openNotiMenu, setOpenNotiMenu] = useState(false); 
+  const [openNotiMenu, setOpenNotiMenu] = useState(false);
 
   const news1Title = "In Conversation: Is intermittent fasting actually bad for your heart?";
   const news1Para =
@@ -36,7 +36,12 @@ const AdminHomePage = () => {
           Group2.io
         </a>
 
-        <img className="home-noti-bell" src={notiBell} alt="Bell Notification" onClick={() => setOpenNotiMenu(!openNotiMenu)} />
+        <img
+          className="home-noti-bell"
+          src={notiBell}
+          alt="Bell Notification"
+          onClick={() => setOpenNotiMenu(!openNotiMenu)}
+        />
 
         <div className={`home-noti-menu-wrap${openNotiMenu === true ? " open-noti" : ""}`}>
           <div className="home-noti-menu">
@@ -44,22 +49,26 @@ const AdminHomePage = () => {
           </div>
         </div>
 
-        <img className="home-user-pic" src={tempAva} alt={`${tempAva}`} onClick={() => setOpenSubMenu(!openSubMenu)}/>
+        <img className="home-user-pic" src={tempAva} alt={`${tempAva}`} onClick={() => setOpenSubMenu(!openSubMenu)} />
 
         <div className={`home-sub-menu-wrap${openSubMenu === true ? " open-menu" : ""}`}>
           <div className="home-sub-menu">
-            <div className="user-info">
+            <div className="home-user-info">
               <img src={tempAva} alt={`${tempAva}`} />
-              <div className="user-info-identity">
-                <p className="user-info-name">Coquette Hamster</p>
-                <p className="user-info-id">@itcsiu21999</p>
+              <div className="home-user-info-identity">
+                <p className="home-user-info-name">Coquette Hamster</p>
+                <p className="home-user-info-id">@itcsiu21999</p>
               </div>
             </div>
             <hr />
-            <a href="" onClick={() => navigate("/admin/home")}>Home Page</a>
+            <a href="" onClick={() => navigate("/admin/home")}>
+              Home Page
+            </a>
             <a href="">Aministrator Console</a>
             <a href="">Setting</a>
-            <a href="" onClick={() => navigate("/")}>Log out</a>
+            <a href="" onClick={() => navigate("/")}>
+              Log out
+            </a>
           </div>
         </div>
       </nav>

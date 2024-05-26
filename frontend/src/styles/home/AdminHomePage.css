@@ -2,204 +2,203 @@
 
 /* Desktop & Laptop */
 @media screen and (min-width: 640px) {
-    main {
-      width: 100%;
-      height: min-content;
-    }
-  
-    .home-nav {
-      display: grid;
-      grid-template-rows: 10vh;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-areas: "main profile";
-      align-items: center;
-      margin-top: 32px;
-      position: relative;
-      z-index: 3;
-    }
-  
-    .home-nav .home-nav-main {
-      grid-area: main;
-      justify-self: start;
-      margin-left: 120px;
-      text-decoration: none;
-      color: #2e3191;
-      font-size: 40px;
-      line-height: 49px;
-      font-weight: 600;
-    }
-  
-    .home-nav .home-noti-bell {
-      grid-area: profile;
-      cursor: pointer;
-      width: 60px;
-      height: 60px;
-      justify-self: end;
-      margin-right: 240px;
-    }
-  
-    .home-nav .home-user-pic {
-      grid-area: profile;
-      width: 60px;
-      height: 60px;
-      border: 6px solid #bcbcfc;
-      border-radius: 100rem;
-      cursor: pointer;
-      justify-self: end;
-      margin-right: 120px;
-      object-fit: cover;
-    }
-
-    .home-noti-menu-wrap {
-      position: absolute;
-      top: 100%;
-      right: 240px;
-      width: 332px;
-      max-height: 0px;
-      overflow: hidden;
-      transition: max-height 0.2s;
-    }
-  
-    .home-noti-menu-wrap.open-noti {
-      max-height: 400px;
-    }
-  
-    .home-noti-menu {
-      background: #fff;
-      padding: 20px;
-      margin-top: 10px;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-      border: 1px solid #dadbff;
-      border-radius: 30px;
-    }
-  
-    .home-noti-menu p {
-      display: block;
-      text-decoration: none;
-      font-weight: 300;
-      font-size: 20px;
-      padding: 16px 32px;
-      text-align: center;
-    }
-  
-    .home-sub-menu-wrap {
-      position: absolute;
-      top: 100%;
-      right: 120px;
-      width: 332px;
-      max-height: 0px;
-      overflow: hidden;
-      transition: max-height 0.2s;
-    }
-  
-    .home-sub-menu-wrap.open-menu {
-      max-height: 400px;
-    }
-  
-    .home-sub-menu {
-      background: #fff;
-      padding: 20px;
-      margin-top: 10px;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-      border: 1px solid #dadbff;
-      border-radius: 30px;
-    }
-  
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-  
-    .user-info img {
-      width: 70px;
-      height: 70px;
-      border-radius: 100rem;
-    }
-  
-    .user-info .user-info-identity {
-      text-align: center;
-      font-size: 20px;
-      line-height: 24.38px;
-    }
-  
-    .user-info .user-info-identity .user-info-name {
-      font-weight: 400;
-      margin-bottom: 4px;
-    }
-  
-    .user-info .user-info-identity .user-info-id {
-      font-weight: 300;
-    }
-  
-    .home-sub-menu a {
-      display: block;
-      text-decoration: none;
-      font-weight: 300;
-      font-size: 20px;
-      padding: 16px 32px;
-      text-align: center;
-    }
-  
-    .home-sub-menu a:hover {
-      background-color: #dadbff;
-      border-radius: 100rem;
-      font-weight: 400;
-    }
-  
-    .home-sub-menu a:visited {
-      display: block;
-      text-decoration: none;
-      color: #000;
-    }
-  
-    .home-hero {
-      display: grid;
-      grid-template-rows: 260px;
-      grid-template-columns: 4.5fr 3fr;
-      grid-template-areas: "title img";
-      align-items: center;
-      padding-bottom: 27px;
-      background-image: url(../../assets/imgs/homepage-ellipse.png);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position-y: 16.5vh;
-    }
-  
-    .home-hero .home-hero-title {
-      grid-area: title;
-      text-align: center;
-      width: 75%;
-      font-size: 3.5vw;
-      color: #2e3191;
-      font-weight: 600;
-      margin-left: 160px;
-    }
-  
-    .home-hero .home-hero-title span {
-      color: #ad2fff;
-    }
-  
-    .home-hero .home-hero-img {
-      height: 130%;
-      width: 100%;
-      display: block;
-      position: relative;
-      left: -5%;
-    }
-  
-    .home-hero .home-hero-img img {
-      height: 100%;
-      object-fit: cover;
-    }
-  
-    .home-news {
-      height: min-content;
-      background-color: #dadbff;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(2, 300px) 1fr;
-      height: 100vh;
-    }
+  main {
+    width: 100%;
+    height: min-content;
   }
-  
+
+  .home-nav {
+    display: grid;
+    grid-template-rows: 10vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "main profile";
+    align-items: center;
+    margin-top: 32px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .home-nav .home-nav-main {
+    grid-area: main;
+    justify-self: start;
+    margin-left: 120px;
+    text-decoration: none;
+    color: #2e3191;
+    font-size: 40px;
+    line-height: 49px;
+    font-weight: 600;
+  }
+
+  .home-nav .home-noti-bell {
+    grid-area: profile;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    justify-self: end;
+    margin-right: 240px;
+  }
+
+  .home-nav .home-user-pic {
+    grid-area: profile;
+    width: 60px;
+    height: 60px;
+    border: 6px solid #bcbcfc;
+    border-radius: 100rem;
+    cursor: pointer;
+    justify-self: end;
+    margin-right: 120px;
+    object-fit: cover;
+  }
+
+  .home-noti-menu-wrap {
+    position: absolute;
+    top: 100%;
+    right: 240px;
+    width: 332px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.2s;
+  }
+
+  .home-noti-menu-wrap.open-noti {
+    max-height: 400px;
+  }
+
+  .home-noti-menu {
+    background: #fff;
+    padding: 20px;
+    margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border: 1px solid #dadbff;
+    border-radius: 30px;
+  }
+
+  .home-noti-menu p {
+    display: block;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 20px;
+    padding: 16px 32px;
+    text-align: center;
+  }
+
+  .home-sub-menu-wrap {
+    position: absolute;
+    top: 100%;
+    right: 120px;
+    width: 332px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.2s;
+  }
+
+  .home-sub-menu-wrap.open-menu {
+    max-height: 400px;
+  }
+
+  .home-sub-menu {
+    background: #fff;
+    padding: 20px;
+    margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border: 1px solid #dadbff;
+    border-radius: 30px;
+  }
+
+  .home-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .home-user-info img {
+    width: 70px;
+    height: 70px;
+    border-radius: 100rem;
+  }
+
+  .home-user-info .home-user-info-identity {
+    text-align: center;
+    font-size: 20px;
+    line-height: 24.38px;
+  }
+
+  .home-user-info .home-user-info-identity .home-user-info-name {
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .home-user-info .home-user-info-identity .home-user-info-id {
+    font-weight: 300;
+  }
+
+  .home-sub-menu a {
+    display: block;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 20px;
+    padding: 16px 32px;
+    text-align: center;
+  }
+
+  .home-sub-menu a:hover {
+    background-color: #dadbff;
+    border-radius: 100rem;
+    font-weight: 400;
+  }
+
+  .home-sub-menu a:visited {
+    display: block;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .home-hero {
+    display: grid;
+    grid-template-rows: 260px;
+    grid-template-columns: 4.5fr 3fr;
+    grid-template-areas: "title img";
+    align-items: center;
+    padding-bottom: 27px;
+    background-image: url(../../assets/imgs/homepage-ellipse.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 16.5vh;
+  }
+
+  .home-hero .home-hero-title {
+    grid-area: title;
+    text-align: center;
+    width: 75%;
+    font-size: 3.5vw;
+    color: #2e3191;
+    font-weight: 600;
+    margin-left: 160px;
+  }
+
+  .home-hero .home-hero-title span {
+    color: #ad2fff;
+  }
+
+  .home-hero .home-hero-img {
+    height: 130%;
+    width: 100%;
+    display: block;
+    position: relative;
+    left: -5%;
+  }
+
+  .home-hero .home-hero-img img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .home-news {
+    height: min-content;
+    background-color: #dadbff;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 300px) 1fr;
+    height: 100vh;
+  }
+}

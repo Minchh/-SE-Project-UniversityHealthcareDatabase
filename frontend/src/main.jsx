@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/home/HomePage.jsx";
 import UserHomePage from "./pages/home/UserHomePage.jsx";
 import AdminHomePage from "./pages/home/AdminHomePage.jsx";
+import Personal from "./pages/profile/Personal.jsx";
 import LoginPage from "./pages/login/LoginPage.jsx";
 import RegisterPage from "./pages/register/RegisterPage.jsx";
 import NotFoundPage from "./pages/error/NotFoundPage.jsx";
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/user/home",
     element: <UserHomePage />,
+  },
+  {
+    path: "/user/profile",
+    element: <Personal />,
   },
   {
     path: "/admin/home",
