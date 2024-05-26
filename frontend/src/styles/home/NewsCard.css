@@ -32,6 +32,12 @@
 .card-content {
   margin-top: 45px;
   margin-bottom: 36px;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .card-content h2 {
@@ -41,6 +47,12 @@
   padding-left: 38px;
   padding-right: 20px;
   margin-bottom: 4px;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .card-content p {
@@ -50,4 +62,10 @@
   line-height: 32.5px;
   padding-left: 38px;
   padding-right: 20px;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
