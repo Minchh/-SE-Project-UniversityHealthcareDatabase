@@ -171,8 +171,8 @@ app.post('/changePassword', async (req, res) => {
 
 // Save Health Details
 app.post('/saveHealthDetails', (req, res) => {
-    const { userId, bloodId, gender, height, weight, insuranceId, healthProblems, allergies } = req.body;
-    
+    console.log(req.body);
+    const { userID, bloodId, gender, height, weight, insuranceId, healthProblems, allergies } = req.body;
     // Construct the query to insert or update health details in the 'record' table
     const query = `
         INSERT INTO record (user_ID, blood_ID, bodyHeight, bodyWeight, gender, healthInsurance_ID, chronicHealthProblem, allergies)
@@ -186,8 +186,9 @@ app.post('/saveHealthDetails', (req, res) => {
             chronicHealthProblem = VALUES(chronicHealthProblem), 
             allergies = VALUES(allergies)
     `;
-
-    const values = [userId, bloodId, height, weight, gender, insuranceId, healthProblems, allergies];
+    const values = [parseInt(userID, 10), parseInt(bloodId, 10), parseInt(height, 10), 
+        parseInt(weight, 10), gender, parseInt(insuranceId, 10), 
+        healthProblems, allergies];
 
     db.query(query, values, (error, results) => {
         if (error) {

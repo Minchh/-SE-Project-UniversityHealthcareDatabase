@@ -227,6 +227,7 @@ const Personal = () => {
   };
 
   // Save healthcare profile
+  const [userID, setuserID] = useState("");
   const [bloodId, setBloodID] = useState("");
   const [gender, setGender] = useState("male");
   const [height, setHeight] = useState("");
@@ -239,7 +240,7 @@ const Personal = () => {
 
   const saveHealthDetails = async (event) => {
     event.preventDefault();
-
+    setuserID('17');
     const healthDetailsData = {
       userID,
       bloodId,
@@ -263,11 +264,11 @@ const Personal = () => {
       });
 
       const result = await response.json();
-      if (result.success) {
+      if (result.success || result.status === 200) {
         alert("Health details saved successfully");
         resetHealthDetailsForm();
       } else {
-        alert("Failed to save health details: " + result.message);
+        alert(result.message);
       }
     } catch (error) {
       console.error("Error saving health details:", error);
