@@ -227,13 +227,13 @@ const Personal = () => {
   };
 
   // Save healthcare profile
-  const [bloodID, setBloodID] = useState("");
+  const [bloodId, setBloodID] = useState("");
   const [gender, setGender] = useState("male");
   const [height, setHeight] = useState("");
   const [heightUnit, setHeightUnit] = useState("cm");
   const [weight, setWeight] = useState("");
   const [weightUnit, setWeightUnit] = useState("kg");
-  const [insuranceCardID, setInsuranceCardID] = useState("");
+  const [insuranceId, setInsuranceCardID] = useState("");
   const [allergies, setAllergies] = useState("");
   const [healthProblems, setHealthProblems] = useState("");
 
@@ -241,13 +241,14 @@ const Personal = () => {
     event.preventDefault();
 
     const healthDetailsData = {
-      bloodID,
+      userID,
+      bloodId,
       gender,
       height,
       heightUnit,
       weight,
       weightUnit,
-      insuranceCardID,
+      insuranceId,
       allergies,
       healthProblems,
     };
@@ -585,7 +586,7 @@ const Personal = () => {
                     id="blood-input"
                     placeholder="Enter your Blood ID"
                     className="blood-input"
-                    value={bloodID}
+                    value={bloodId}
                     onChange={(e) => setBloodID(e.target.value)}
                   />
                 </div>
@@ -641,7 +642,7 @@ const Personal = () => {
                   type="text"
                   id="insurance-input"
                   placeholder="Enter your health insurance card ID"
-                  value={insuranceCardID}
+                  value={insuranceId}
                   onChange={(e) => setInsuranceCardID(e.target.value)}
                 />
               </div>

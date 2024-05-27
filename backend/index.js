@@ -171,7 +171,7 @@ app.post('/changePassword', async (req, res) => {
 
 // Save Health Details
 app.post('/saveHealthDetails', (req, res) => {
-    const { userId, bloodId, gender, height, weight, insuranceId, allergies, healthProblems } = req.body;
+    const { userId, bloodId, gender, height, weight, insuranceId, healthProblems, allergies } = req.body;
     
     // Construct the query to insert or update health details in the 'record' table
     const query = `
